@@ -1,14 +1,18 @@
 package moe.shipduck.amatsukaze.android;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
+
+import moe.shipduck.amatsukaze.Basic3D;
 import moe.shipduck.amatsukaze.MyGdxGame;
 
 public class LiveWallpaperScreen implements Screen {
-	MyGdxGame myGame;
+	ApplicationListener myGame;
 
 	public LiveWallpaperScreen(final Game game) {
-		this.myGame = new MyGdxGame();
+		//this.myGame = new MyGdxGame();
+		this.myGame = new Basic3D();
 		this.myGame.create();
 	}
 
@@ -32,7 +36,7 @@ public class LiveWallpaperScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		myGame.draw();
+		myGame.render();
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package moe.shipduck.amatsukaze.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+
+import moe.shipduck.amatsukaze.Basic3D;
 import moe.shipduck.amatsukaze.MyGdxGame;
 
 public class DesktopLauncher {
@@ -15,6 +17,7 @@ public class DesktopLauncher {
 		config.width = (int)(width * scale);
 		config.height = (int)(height * scale);
 		config.title = "Amatsukaze";
-		new LwjglApplication(new MyGdxGame(), config);
+		//new LwjglApplication(new MyGdxGame(), config);
+		new LwjglApplication(new Basic3D(), config);
 	}
 }
