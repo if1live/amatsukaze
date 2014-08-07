@@ -67,6 +67,19 @@ project(":core") {
     }
 }
 
+project(":test") {
+    apply plugin: "java"
+
+
+    dependencies {
+		compile project(":core")
+        compile "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        compile "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"        
+        compile "junit:junit:4.11"
+    }
+}
+
 tasks.eclipse.doLast {
     delete ".project"
 }
