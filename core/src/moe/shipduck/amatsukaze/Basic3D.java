@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.g3d.ModelInstance;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.environment.DirectionalLight;
+import com.badlogic.gdx.graphics.g3d.utils.CameraInputController;
 import com.badlogic.gdx.graphics.g3d.utils.ModelBuilder;
 
 /**
@@ -24,6 +25,8 @@ public class Basic3D implements ApplicationListener {
     public Model model;
     public ModelInstance instance;
     public Environment environment;
+    
+    public CameraInputController camController;
 
 
 	@Override
@@ -41,6 +44,9 @@ public class Basic3D implements ApplicationListener {
 		cam.far = 300f;
 		cam.update();
 		
+		camController = new CameraInputController(cam);
+		Gdx.input.setInputProcessor(camController);
+		
 		ModelBuilder modelBuilder = new ModelBuilder();
         model = modelBuilder.createBox(5f, 5f, 5f, 
             new Material(ColorAttribute.createDiffuse(Color.GREEN)),
@@ -50,6 +56,8 @@ public class Basic3D implements ApplicationListener {
 
 	@Override
 	public void render() {
+		camController.update();
+		 
 		Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
  
