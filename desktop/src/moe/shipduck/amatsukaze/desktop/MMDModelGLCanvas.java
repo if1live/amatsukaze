@@ -27,9 +27,6 @@ import net.yzwlab.javammd.model.MMDModel;
 public class MMDModelGLCanvas {
 
 	static {
-		// setting this true causes window events not to get sent on Linux if
-		// you run from inside Eclipse
-		//GLProfile.initSingleton(false);
 		GLProfile.initSingleton();
 	}
 
@@ -42,12 +39,9 @@ public class MMDModelGLCanvas {
 		
 		String pmd = "./test.pmd";
 		String vmd = "./test.vmd";
-		
-		//File f = new File(args[0]);
-		File f = new File(pmd);
+
 		try {
-			model.openPMD(new FileBuffer(f.getPath()));
-			//model.openVMD(new FileBuffer(new File(args[1])));
+			model.openPMD(new FileBuffer(new File(pmd)));
 			model.openVMD(new FileBuffer(new File(vmd)));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -73,58 +67,9 @@ public class MMDModelGLCanvas {
 
 		GLCanvas glcanvas = new GLCanvas(glcapabilities);
 		model.setScale(1.0f);
+		File f = new File(pmd);
 		MMDDrawer drawer = new MMDDrawer(f.getParentFile(), glcanvas, baseTime);
 		drawer.add(model);
-
-		/*
-		MetaseqModel mqoModel = new MetaseqModel();
-		mqoModel.load(
-				new FileBuffer(new File(f.getParentFile(), "TODO.mqo")
-						.getPath()), 0.1, 255);
-		drawer.add(mqoModel);
-
-		mqoModel = new MetaseqModel();
-		mqoModel.load(new FileBuffer(new File(f.getParentFile(),
-				"dell_r610.mqo").getPath()), 0.05, 255);
-		drawer.add(mqoModel);
-		*/
-		/*
-		Cube cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(1.0f, 0.0f, 0.0f, 1.0f);
-		cube.setTranslate(0.0f, 1.0f, 0.0f);
-		drawer.add(cube);
-
-		cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(0.0f, 0.0f, 1.0f, 1.0f);
-		cube.setTranslate(4.0f, 1.0f, 0.0f);
-		drawer.add(cube);
-
-		cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(1.0f, 0.0f, 0.0f, 1.0f);
-		cube.setTranslate(8.0f, 1.0f, 0.0f);
-		drawer.add(cube);
-
-		cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(0.0f, 0.0f, 1.0f, 1.0f);
-		cube.setTranslate(0.0f, 5.0f, 0.0f);
-		drawer.add(cube);
-
-		cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(1.0f, 0.0f, 0.0f, 1.0f);
-		cube.setTranslate(4.0f, 5.0f, 0.0f);
-		drawer.add(cube);
-
-		cube = new Cube();
-		cube.setScale(2.0f);
-		cube.setColor(0.0f, 0.0f, 1.0f, 1.0f);
-		cube.setTranslate(8.0f, 5.0f, 0.0f);
-		drawer.add(cube);
-		*/
 
 		glcanvas.addGLEventListener(drawer);
 		glcanvas.setSize(new Dimension((int) (320 * 1.5), (int) (240 * 1.5)));
