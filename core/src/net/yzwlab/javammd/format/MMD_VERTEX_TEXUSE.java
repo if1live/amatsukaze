@@ -2,6 +2,7 @@ package net.yzwlab.javammd.format;
 
 import java.io.Serializable;
 
+import net.yzwlab.javammd.IGL;
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
@@ -66,7 +67,6 @@ public class MMD_VERTEX_TEXUSE implements Serializable {
 	 * @param gl
 	 *            転送対象。nullは不可。
 	 */
-	/*
 	public void toGL(IGL gl) {
 		if (gl == null) {
 			throw new IllegalArgumentException();
@@ -75,5 +75,4 @@ public class MMD_VERTEX_TEXUSE implements Serializable {
 		gl.glVertex3f(point.x, point.y, point.z);
 		gl.glNormal3f(normal.x, normal.y, normal.z);
 	}
-	*/
 }

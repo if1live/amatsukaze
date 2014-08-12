@@ -6,6 +6,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import moe.shipduck.amatsukaze.Basic3D;
 import moe.shipduck.amatsukaze.MyGdxGame;
 
+/*
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
@@ -21,3 +22,4 @@ public class DesktopLauncher {
 		new LwjglApplication(new Basic3D(), config);
 	}
 }
+*/

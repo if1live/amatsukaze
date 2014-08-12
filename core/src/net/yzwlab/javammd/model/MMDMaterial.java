@@ -2,6 +2,9 @@ package net.yzwlab.javammd.model;
 
 import java.util.List;
 
+import net.yzwlab.javammd.GLTexture;
+import net.yzwlab.javammd.IGL;
+import net.yzwlab.javammd.IGLTextureProvider;
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.MMD_VERTEX_DESC;
 import net.yzwlab.javammd.format.MMD_VERTEX_TEXUSE;
@@ -14,7 +17,7 @@ import net.yzwlab.javammd.format.PMD_VERTEX_RECORD;
 public class MMDMaterial {
 	protected PMD_MATERIAL_RECORD m_material;
 
-	//protected GLTexture m_texture;
+	protected GLTexture m_texture;
 
 	// protected MMD_VERTEX_TEXUSE[] m_pCurrentVertexes;
 
@@ -25,7 +28,7 @@ public class MMDMaterial {
 	public MMDMaterial(PMD_MATERIAL_RECORD pMaterial) {
 		this.m_bVisible = false;
 		this.m_pVertexes = null;
-		//this.m_texture = null;
+		this.m_texture = null;
 		this.m_material = new PMD_MATERIAL_RECORD();
 		m_pVertexes = null;
 		m_bVisible = true;
@@ -108,7 +111,6 @@ public class MMDMaterial {
 	 * @throws ReadException
 	 *             読み込み失敗時のエラー。
 	 */
-	/*
 	public void prepare(IGLTextureProvider pTextureProvider,
 			final IGLTextureProvider.Handler handler) throws ReadException {
 		if (pTextureProvider == null || handler == null) {
@@ -139,7 +141,6 @@ public class MMDMaterial {
 
 				});
 	}
-	*/
 
 	/**
 	 * 頂点バッファを更新します。
@@ -162,7 +163,6 @@ public class MMDMaterial {
 	 * @param gl
 	 *            描画対象プラットフォーム。nullは不可。
 	 */
-	/*
 	public synchronized void draw(IGL gl) {
 		if (gl == null) {
 			throw new IllegalArgumentException();
@@ -237,7 +237,6 @@ public class MMDMaterial {
 		gl.glPopMatrix();
 		return;
 	}
-	*/
 
 	public void UpdateVisibility() {
 		MMDBone pBone = null;
@@ -272,14 +271,12 @@ public class MMDMaterial {
 	 * @param texture
 	 *            テクスチャ。nullは不可。
 	 */
-	/*
 	private synchronized void setTexture(GLTexture texture) {
 		if (texture == null) {
 			throw new IllegalArgumentException();
 		}
 		m_texture = texture;
 	}
-	*/
 
 	public class MMD_VERTEX_UNIT {
 		protected final MMD_VERTEX_DESC pOriginalVert;

@@ -6,6 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.yzwlab.javammd.IGL;
+import net.yzwlab.javammd.IGLObject;
+import net.yzwlab.javammd.IGLTextureProvider;
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.MMD_VERTEX_DESC;
@@ -22,7 +25,7 @@ import net.yzwlab.javammd.format.VMD_MOTION_RECORD;
 /**
  * MMDのモデルを表現します。
  */
-public class MMDModel {	//implements IGLObject {
+public class MMDModel implements IGLObject {
 
 	protected float m_scale;
 
@@ -241,7 +244,6 @@ public class MMDModel {	//implements IGLObject {
 		return setVMD(buffer, vmdFile);
 	}
 
-	/*
 	@Override
 	public void prepare(IGLTextureProvider pTextureProvider,
 			IGLTextureProvider.Handler handler) throws ReadException {
@@ -252,7 +254,6 @@ public class MMDModel {	//implements IGLObject {
 			m_materials.get(i).prepare(pTextureProvider, handler);
 		}
 	}
-	*/
 
 	/**
 	 * 拡大率を設定します。
@@ -298,7 +299,7 @@ public class MMDModel {	//implements IGLObject {
 		m_pVertexList.updateSkinning();
 	}
 
-	/*
+
 	@Override
 	public void draw(IGL gl) {
 		if (gl == null) {
@@ -317,7 +318,6 @@ public class MMDModel {	//implements IGLObject {
 		}
 		gl.glPopMatrix();
 	}
-	*/
 
 	/**
 	 * Faceを設定します。

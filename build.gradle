@@ -36,6 +36,16 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-bullet-platform:$gdxVersion:natives-desktop"
+		
+		compile files("../libs/gluegen.jar")
+		compile files("../libs/gluegen-rt.jar")
+		compile files("../libs/gluegen-rt-natives-windows-i586.jar")
+		compile files("../libs/joal.jar")
+		compile files("../libs/joal-natives-windows-i586.jar")
+		compile files("../libs/jocl.jar")
+		compile files("../libs/jocl-natives-windows-i586.jar")
+		compile files("../libs/jogl-all.jar")
+		compile files("../libs/jogl-all-natives-windows-i586.jar")
     }
 }
 
