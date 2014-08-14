@@ -22,6 +22,16 @@ public class MMDMaterial {
 	// protected MMD_VERTEX_TEXUSE[] m_pCurrentVertexes;
 
 	protected MMD_VERTEX_UNIT[] m_pVertexes;
+	
+	// TODO
+	public MMD_VERTEX_UNIT[] getVertices() {
+		return m_pVertexes;
+	}
+	
+	// TODO
+	public PMD_MATERIAL_RECORD getRawMaterial() {
+		return m_material;
+	}
 
 	protected boolean m_bVisible;
 
@@ -281,7 +291,8 @@ public class MMDMaterial {
 	public class MMD_VERTEX_UNIT {
 		protected final MMD_VERTEX_DESC pOriginalVert;
 
-		protected final MMD_VERTEX_TEXUSE pCurrentVert;
+		//protected final MMD_VERTEX_TEXUSE pCurrentVert;
+		public final MMD_VERTEX_TEXUSE pCurrentVert;
 
 		public MMD_VERTEX_UNIT(MMD_VERTEX_DESC pOriginalVert,
 				MMD_VERTEX_TEXUSE pCurrentVert) {

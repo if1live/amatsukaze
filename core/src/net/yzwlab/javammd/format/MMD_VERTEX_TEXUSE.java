@@ -13,11 +13,11 @@ public class MMD_VERTEX_TEXUSE implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected final MMD_VECTOR3 point;
+	public final MMD_VECTOR3 point;
 
-	protected final MMD_VECTOR3 normal;
+	public final MMD_VECTOR3 normal;
 
-	protected final MMD_VECTOR2 uv;
+	public final MMD_VECTOR2 uv;
 
 	public MMD_VERTEX_TEXUSE() {
 		this.point = new MMD_VECTOR3();

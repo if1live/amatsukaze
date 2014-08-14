@@ -34,7 +34,7 @@ public class MMDVertexList {
 	public void verify() {
 		int index = 0;
 		for (MMD_VERTEX_DESC desc : m_pVertexes) {
-			System.out.println("Verifying: " + index);
+			//System.out.println("Verifying: " + index);
 			desc.verify();
 			index ++;
 		}

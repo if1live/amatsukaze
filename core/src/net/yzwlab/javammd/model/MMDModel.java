@@ -299,7 +299,6 @@ public class MMDModel implements IGLObject {
 		m_pVertexList.updateSkinning();
 	}
 
-
 	@Override
 	public void draw(IGL gl) {
 		if (gl == null) {
@@ -420,6 +419,13 @@ public class MMDModel implements IGLObject {
 			throw new IllegalArgumentException();
 		}
 		return new MaterialAccessor(m_materials.get(index));
+	}
+
+	public MMDMaterial getRawMaterial(int index) {
+		if (index >= m_materials.size()) {
+			throw new IllegalArgumentException();
+		}
+		return m_materials.get(index);
 	}
 
 	/**
