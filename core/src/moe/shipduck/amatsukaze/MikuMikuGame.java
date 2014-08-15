@@ -103,10 +103,8 @@ public class MikuMikuGame extends ApplicationAdapter {
 				vertices.add(v.uv.x);
 				vertices.add(v.uv.y);
 				
-				vertices.add(pmdMtl.getDiffuse().r);
-				vertices.add(pmdMtl.getDiffuse().g);
-				vertices.add(pmdMtl.getDiffuse().b);
-				vertices.add(1.0f);
+				float color = pmdMtl.getDiffuse().toFloatBits(); 
+				vertices.add(color);
 			}
 		}
 		
@@ -139,11 +137,11 @@ public class MikuMikuGame extends ApplicationAdapter {
 		*/
 		
 		//short[] indices = new short[] {0, 1, 2, 2, 3, 0}; 
-		Mesh mesh = new Mesh(true, vertices.size() / 12, 0,  // static mesh with 4 vertices and no indices
+		Mesh mesh = new Mesh(true, vertices.size() / 9, 0,  // static mesh with 4 vertices and no indices
 			VertexAttribute.Position(), 
 			VertexAttribute.Normal(),
 			VertexAttribute.TexCoords(0),
-			VertexAttribute.ColorUnpacked()
+			VertexAttribute.Color()
 		);
 		//mesh.setIndices(indices);
 		
