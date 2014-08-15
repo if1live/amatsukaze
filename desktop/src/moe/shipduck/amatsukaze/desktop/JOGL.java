@@ -19,7 +19,6 @@ import net.yzwlab.javammd.IGLTextureProvider;
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.image.IImage;
 import net.yzwlab.javammd.image.TargaReader;
-import net.yzwlab.javammd.io.desktop.FileBuffer;
 import net.yzwlab.javammd.model.DataUtils;
 
 public class JOGL implements IGL, IGLTextureProvider {
@@ -63,8 +62,8 @@ public class JOGL implements IGL, IGLTextureProvider {
 			TargaReader reader = new TargaReader();
 			BufferedImage image = null;
 			if (f.getName().endsWith(".tga")) {
-				IImage rawImage = reader.read(imageService, new FileBuffer(f));
-				image = ((AWTImageService.Image) rawImage).getImage();
+				//IImage rawImage = reader.read(imageService, new FileBuffer(f));
+				//image = ((AWTImageService.Image) rawImage).getImage();
 			} else {
 				System.out.println(f.getPath());
 				image = ImageIO.read(f);

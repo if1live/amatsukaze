@@ -14,7 +14,6 @@ import javax.media.opengl.awt.GLCanvas;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import net.yzwlab.javammd.io.desktop.FileBuffer;
 import net.yzwlab.javammd.model.MMDModel;
 
 /**
@@ -39,31 +38,6 @@ public class MMDModelGLCanvas {
 		
 		String pmd = "./test.pmd";
 		String vmd = "./test.vmd";
-
-		try {
-			model.openPMD(new FileBuffer(new File(pmd)));
-			model.openVMD(new FileBuffer(new File(vmd)));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		for (int j = 0; j < model.getFaceCount(); j++) {
-			System.out.println("Face #" + String.valueOf(j + 1) + ": "
-					+ model.getFaceName(j));
-		}
-
-		for (int j = 0; j < model.getBoneCount(); j++) {
-			System.out.println("Bone #" + String.valueOf(j + 1) + ": "
-					+ new String(model.getBone(j).getName()));
-		}
-
-		for (int j = 0; j < model.getIKCount(); j++) {
-			String name = new String(model.getIKTargetName(j));
-			System.out.println("IK #" + String.valueOf(j + 1) + ": " + name);
-			if (name.indexOf("�r") > 0) {
-				model.setIKEnabled(j, false);
-			}
-		}
 
 		GLCanvas glcanvas = new GLCanvas(glcapabilities);
 		model.setScale(1.0f);

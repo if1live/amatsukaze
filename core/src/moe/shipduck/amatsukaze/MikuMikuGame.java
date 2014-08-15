@@ -9,13 +9,14 @@ import net.yzwlab.javammd.IGLObject;
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.MMD_VERTEX_TEXUSE;
 import net.yzwlab.javammd.format.PMD_MATERIAL_RECORD;
-import net.yzwlab.javammd.io.desktop.FileBuffer;
+import net.yzwlab.javammd.io.GdxFileBuffer;
 import net.yzwlab.javammd.model.MMDMaterial;
 import net.yzwlab.javammd.model.MMDModel;
 import net.yzwlab.javammd.model.MMDMaterial.MMD_VERTEX_UNIT;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
@@ -202,13 +203,13 @@ public class MikuMikuGame extends ApplicationAdapter {
 
 	public MMDModel loadModel(String pmdFile, String vmdFile) {
 		MMDModel model = new MMDModel();
+		FileHandle pmdFileHandle = Gdx.files.internal(pmdFile);
+		FileHandle vmdFileHandle = Gdx.files.internal(vmdFile);
+		
 		try {
-			model.openPMD(new FileBuffer(new File(pmdFile)));
-			model.openVMD(new FileBuffer(new File(vmdFile)));
+			model.openPMD(new GdxFileBuffer(pmdFileHandle));
+			model.openVMD(new GdxFileBuffer(vmdFileHandle));
 		} catch (ReadException e) {
-			e.printStackTrace();
-			System.exit(0);
-		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -256,7 +257,8 @@ public class MikuMikuGame extends ApplicationAdapter {
 			baseTime = System.currentTimeMillis();
 		}
 
-		updateModel(this.model);
+		//TODO slow operator
+		//updateModel(this.model);
 	}
 
 	public void updateModel(MMDModel model) {

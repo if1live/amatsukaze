@@ -4,6 +4,7 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 import moe.shipduck.amatsukaze.Basic3D;
+import moe.shipduck.amatsukaze.DevGame;
 import moe.shipduck.amatsukaze.MikuMikuGame;
 import moe.shipduck.amatsukaze.MyGdxGame;
 
@@ -22,5 +23,6 @@ public class DesktopLauncher {
 		//new LwjglApplication(new MyGdxGame(), config);
 		//new LwjglApplication(new Basic3D(), config);
 		new LwjglApplication(new MikuMikuGame(), config);
+		//new LwjglApplication(new DevGame(), config);
 	}
 }
