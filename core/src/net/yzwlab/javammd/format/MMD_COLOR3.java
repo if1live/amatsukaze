@@ -47,7 +47,11 @@ public class MMD_COLOR3 implements Serializable {
 	}
 	
 	public Color toColor() {
-		int rgba8888 = ((int)r << 24) | ((int)g << 16) | ((int)b << 8) | ((int)255);
+		int bitR = (int)r << 24 & (int)255 << 24;
+		int bitG = (int)g << 16 & (int)255 << 16;
+		int bitB = (int)b << 8 & (int)255 << 8;
+		int bitA = (int)255;
+		int rgba8888 = bitR | bitG | bitB | bitA;
 		return new Color(rgba8888);
 	}
 }

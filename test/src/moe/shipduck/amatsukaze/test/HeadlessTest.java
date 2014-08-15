@@ -11,8 +11,8 @@ public class HeadlessTest {
 
 	@Test
 	public void testRun() {
-		HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
-		HeadlessApplication app = new HeadlessApplication(new MyGdxGame(), config);
+		//HeadlessApplicationConfiguration config = new HeadlessApplicationConfiguration();
+		//HeadlessApplication app = new HeadlessApplication(new MyGdxGame(), config);
 	}
 
 }
