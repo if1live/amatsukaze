@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
+import com.badlogic.gdx.graphics.Color;
+
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
@@ -42,5 +44,10 @@ public class MMD_COLOR3 implements Serializable {
 		data[3] = (byte)255;
 		float f = ByteBuffer.wrap(data).order(ByteOrder.LITTLE_ENDIAN).getFloat();
 		return f;
+	}
+	
+	public Color toColor() {
+		int rgba8888 = ((int)r << 24) | ((int)g << 16) | ((int)b << 8) | ((int)255);
+		return new Color(rgba8888);
 	}
 }
