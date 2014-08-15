@@ -82,9 +82,7 @@ public class PMD_BONE_RECORD implements Serializable {
 	}
 
 	public PMD_BONE_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.name = buffer.readByteArray(20);
 		this.parent = buffer.readShort();
 		this.to = buffer.readShort();

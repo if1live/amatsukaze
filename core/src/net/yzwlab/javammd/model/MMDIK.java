@@ -23,11 +23,11 @@ public class MMDIK {
 	protected List<MMDBone> m_bones;
 
 	public static int compare(MMDIK pLeft, MMDIK pRight) {
+		assert pLeft != null;
+		assert pRight != null;
+		
 		int sortVal1 = 0;
 		int sortVal2 = 0;
-		if (pLeft == null || pRight == null) {
-			throw new IllegalArgumentException();
-		}
 		sortVal1 = pLeft.GetSortValue();
 		sortVal2 = pRight.GetSortValue();
 		if (sortVal1 < sortVal2) {
@@ -46,9 +46,7 @@ public class MMDIK {
 	 *            IK。nullは不可。
 	 */
 	public MMDIK(PMD_IK_RECORD ik) {
-		if (ik == null) {
-			throw new IllegalArgumentException();
-		}
+		assert ik != null;
 		if (ik.getLink().size() == 0) {
 			throw new IllegalArgumentException();
 		}
@@ -70,9 +68,7 @@ public class MMDIK {
 	}
 
 	public void init(List<MMDBone> bones) {
-		if (bones == null) {
-			throw new IllegalArgumentException();
-		}
+		assert bones != null;
 		MMDBone pBone = null;
 		m_pTarget = bones.get(m_ik.getParent());
 		m_pEffect = bones.get(m_ik.getTo());
@@ -85,9 +81,7 @@ public class MMDIK {
 	}
 
 	public byte[] getTargetName() {
-		if (m_pTarget == null) {
-			throw new IllegalArgumentException("E_UNEXPECTED");
-		}
+		assert m_pTarget != null : "E_UNEXPECTED";
 		return m_pTarget.getName();
 	}
 
@@ -106,9 +100,8 @@ public class MMDIK {
 	 * IKを更新します。
 	 */
 	public void update() {
-		if (m_pTarget == null || m_pEffect == null) {
-			throw new IllegalArgumentException("E_UNEXPECTED");
-		}
+		assert m_pTarget != null : "E_UNEXPECTED";
+		assert m_pEffect != null : "E_UNEXPECTED";
 		if (m_bEnabled == false) {
 			return;
 		}

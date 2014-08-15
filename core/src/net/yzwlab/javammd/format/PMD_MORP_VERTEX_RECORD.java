@@ -38,9 +38,7 @@ public class PMD_MORP_VERTEX_RECORD implements Serializable {
 	}
 
 	public PMD_MORP_VERTEX_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.no = buffer.readInteger();
 		this.vec = buffer.readFloatArray(3);
 		return this;

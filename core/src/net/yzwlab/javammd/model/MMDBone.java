@@ -45,11 +45,11 @@ public class MMDBone {
 	private MMD_MATRIX effectLocalTemp;
 
 	public static int less(Motion pLeft, Motion pRight) {
+		assert pLeft != null;
+		assert pRight != null;
+		
 		int f1 = 0;
 		int f2 = 0;
-		if (pLeft == null || pRight == null) {
-			throw new IllegalArgumentException();
-		}
 		f1 = 0;
 		f2 = 0;
 		f1 = pLeft.getFrameNo();
@@ -70,9 +70,7 @@ public class MMDBone {
 	 *            ボーンデータ。nullは不可。
 	 */
 	public MMDBone(PMD_BONE_RECORD pBone) {
-		if (pBone == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pBone != null;
 		this.m_bVisible = true;
 		this.m_motions = new ArrayList<Motion>();
 		this.m_bIKLimitAngle = false;
@@ -149,9 +147,7 @@ public class MMDBone {
 	}
 
 	public boolean isTarget(VMD_MOTION_RECORD pMotion) {
-		if (pMotion == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert pMotion != null : "E_POINTER";
 		if (DataUtils.compare(m_bone.getName(), pMotion.getName(), 15) == 0) {
 			return true;
 		}
@@ -172,9 +168,8 @@ public class MMDBone {
 	 */
 	public void addMotion(IReadBuffer buffer, int offset,
 			VMD_MOTION_RECORD pMotion) throws ReadException {
-		if (buffer == null || pMotion == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert buffer != null : "E_POINTER";
+		assert pMotion != null : "E_POINTER";
 		Motion pMot = new Motion(buffer, offset, pMotion);
 		m_motions.add(pMot);
 		return;
@@ -198,9 +193,8 @@ public class MMDBone {
 	 */
 	public MMD_VERTEX_TEXUSE applySkinning(MMD_VERTEX_TEXUSE pOriginal,
 			MMD_VERTEX_TEXUSE pDest) {
-		if (pOriginal == null || pDest == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert pOriginal != null : "E_POINTER";
+		assert pDest != null : "E_POINTER";
 		MMD_VECTOR3 point = pDest.getPoint();
 		point.copyFrom(pOriginal.getPoint());
 		point.transform(m_effectSkinning);
@@ -229,10 +223,11 @@ public class MMDBone {
 	public MMD_VERTEX_TEXUSE applySkinning(MMD_VERTEX_TEXUSE pOriginal,
 			MMDBone pBone, float bweight, MMD_VERTEX_TEXUSE pDest,
 			MMD_MATRIX skinning) {
-		if (pOriginal == null || pBone == null || pDest == null
-				|| skinning == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pOriginal != null;
+		assert pBone != null;
+		assert pDest != null;
+		assert skinning != null;
+		
 		skinning.lerp(m_effectSkinning, pBone.m_effectSkinning, bweight);
 		MMD_VECTOR3 point = pDest.getPoint();
 		point.copyFrom(pOriginal.getPoint());
@@ -338,9 +333,7 @@ public class MMDBone {
 	 * @return local行列のうち位置。
 	 */
 	public MMD_VECTOR3 getPositionFromLocal(MMD_VECTOR3 buffer) {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		float[][] localValues = m_effectLocal.getValues();
 		buffer.x = localValues[3][0];
 		buffer.y = localValues[3][1];
@@ -356,9 +349,7 @@ public class MMDBone {
 	 * @return local行列。
 	 */
 	public MMD_MATRIX getLocal(MMD_MATRIX buffer) {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		buffer.copyFrom(m_effectLocal);
 		return buffer;
 	}
@@ -368,9 +359,8 @@ public class MMDBone {
 	}
 
 	public void setVectors(MMD_VECTOR3 pPos, MMD_VECTOR4 pQt) {
-		if (pPos == null || pQt == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert pPos != null : "E_POINTER";
+		assert pQt != null : "E_POINTER";
 		m_effectPosition.copyFrom(pPos);
 		m_effectRotation.copyFrom(pQt);
 	}
@@ -454,9 +444,8 @@ public class MMDBone {
 		 */
 		public Motion(IReadBuffer buffer, int offset, VMD_MOTION_RECORD pMotion)
 				throws ReadException {
-			if (buffer == null || pMotion == null) {
-				throw new IllegalArgumentException();
-			}
+			assert buffer != null;
+			assert pMotion != null;
 			this.offset = offset;
 			this.m_pRotBez = null;
 			this.m_pZBez = null;
@@ -514,9 +503,8 @@ public class MMDBone {
 		}
 
 		public void getVectors(MMD_VECTOR3 pos, MMD_VECTOR4 qt) {
-			if (pos == null || qt == null) {
-				throw new IllegalArgumentException();
-			}
+			assert pos != null;
+			assert qt != null;
 			pos.copyFrom(m_pos);
 			qt.copyFrom(m_qt);
 		}
@@ -525,9 +513,10 @@ public class MMDBone {
 				float weight) {
 			MMD_VECTOR3 pDest = new MMD_VECTOR3();
 			float posLerp = 0.0f;
-			if (pDest == null || pValue1 == null || pValue2 == null) {
-				throw new IllegalArgumentException("E_POINTER");
-			}
+			
+			assert pDest != null : "E_POINTER";
+			assert pValue1 != null : "E_POINTER";
+			assert pValue2 != null : "E_POINTER";
 			posLerp = 0.0f;
 			posLerp = m_pXBez.getValue(weight);
 			pDest.x = (pValue1.x * (1.0f - posLerp) + pValue2.x * posLerp);
@@ -567,9 +556,8 @@ public class MMDBone {
 		private MMD_VECTOR4 qt;
 
 		public PositionAndQT(MMD_VECTOR3 position, MMD_VECTOR4 qt) {
-			if (position == null || qt == null) {
-				throw new IllegalArgumentException();
-			}
+			assert position != null;
+			assert qt != null;
 			this.position = new MMD_VECTOR3(position);
 			this.qt = new MMD_VECTOR4(qt);
 		}
@@ -593,7 +581,9 @@ public class MMDBone {
 		private float offset;
 
 		public MotionSet(Motion motion1, Motion motion2, float offset) {
-			if (motion1 == null && motion2 == null && offset >= 1.0f) {
+			assert motion1 != null;
+			assert motion2 != null;
+			if (offset >= 1.0f) {
 				throw new IllegalArgumentException();
 			}
 			this.motion1 = motion1;

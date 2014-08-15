@@ -25,9 +25,7 @@ public class MMD_VERTEX_DESC implements Serializable {
 	protected float bweight;
 
 	public MMD_VERTEX_DESC(PMD_VERTEX_RECORD vert) {
-		if (vert == null) {
-			throw new IllegalArgumentException();
-		}
+		assert vert != null;
 		this.original = new MMD_VERTEX_TEXUSE();
 		this.faced = new MMD_VERTEX_TEXUSE();
 		this.current = new MMD_VERTEX_TEXUSE();
@@ -54,16 +52,12 @@ public class MMD_VERTEX_DESC implements Serializable {
 	}
 
 	public void setCurrent(MMD_VERTEX_TEXUSE current) {
-		if (current == null) {
-			throw new IllegalArgumentException();
-		}
+		assert current != null;
 		this.current.copyFrom(current);
 	}
 
 	public void copyCurrentTo(MMD_VERTEX_TEXUSE target) {
-		if (target == null) {
-			throw new IllegalArgumentException();
-		}
+		assert target != null;
 		target.copyFrom(current);
 	}
 
@@ -74,24 +68,18 @@ public class MMD_VERTEX_DESC implements Serializable {
 	}
 
 	public MMD_VERTEX_TEXUSE getFaced(MMD_VERTEX_TEXUSE buffer) {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		buffer.copyFrom(faced);
 		return buffer;
 	}
 
 	public void setFaced(MMD_VERTEX_TEXUSE current) {
-		if (current == null) {
-			throw new IllegalArgumentException();
-		}
+		assert current != null;
 		this.faced.copyFrom(current);
 	}
 
 	public void setFaced(PMD_MORP_VERTEX_RECORD v) {
-		if (v == null) {
-			throw new IllegalArgumentException();
-		}
+		assert v != null;
 		float[] values = v.getVec();
 		MMD_VECTOR3 point = faced.getPoint();
 		point.x = (values[0]);
@@ -100,9 +88,7 @@ public class MMD_VERTEX_DESC implements Serializable {
 	}
 
 	public void setFaced(MMD_VECTOR3 v) {
-		if (v == null) {
-			throw new IllegalArgumentException();
-		}
+		assert v != null;
 		faced.getPoint().copyFrom(v);
 	}
 
@@ -111,9 +97,7 @@ public class MMD_VERTEX_DESC implements Serializable {
 	}
 
 	public void setBones(MMDBone[] bones) {
-		if (bones == null) {
-			throw new IllegalArgumentException();
-		}
+		assert bones != null;
 		this.bones = bones;
 	}
 

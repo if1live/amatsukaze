@@ -67,9 +67,7 @@ public class PMDFile implements Serializable {
 	 *             読み込み関係のエラー。
 	 */
 	public boolean open(IReadBuffer fs) throws ReadException {
-		if (fs == null) {
-			throw new IllegalArgumentException();
-		}
+		assert fs != null;
 		int size = 0;
 		byte size_b = 0;
 		short size_w = 0;

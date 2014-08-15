@@ -60,9 +60,7 @@ public class MMD_MOTION_PAD implements Serializable {
 	}
 
 	public MMD_MOTION_PAD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.cInterpolationX = buffer.readByteArray(16);
 		this.cInterpolationY = buffer.readByteArray(16);
 		this.cInterpolationZ = buffer.readByteArray(16);

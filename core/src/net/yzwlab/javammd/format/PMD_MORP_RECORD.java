@@ -76,9 +76,7 @@ public class PMD_MORP_RECORD implements Serializable {
 	}
 
 	public PMD_MORP_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		// is.read(name,sizeof(name))
 		this.name = buffer.readByteArray(20);
 		// is.read((char*)&vnum,sizeof(vnum))

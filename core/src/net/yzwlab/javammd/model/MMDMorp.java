@@ -18,11 +18,11 @@ public class MMDMorp {
 	protected List<Motion> m_motions;
 
 	public static int Less(Motion pLeft, Motion pRight) {
+		assert pLeft != null;
+		assert pRight != null;
+		
 		int f1 = 0;
 		int f2 = 0;
-		if (pLeft == null || pRight == null) {
-			throw new IllegalArgumentException();
-		}
 		f1 = 0;
 		f2 = 0;
 		f1 = pLeft.getFrameNo();
@@ -37,14 +37,14 @@ public class MMDMorp {
 	}
 
 	public MMDMorp(PMD_MORP_RECORD pMorp, PMD_MORP_RECORD pMorpBase) {
+		assert pMorp != null : "E_POINTER";
+		
 		this.m_motions = new ArrayList<Motion>();
 		this.m_morp = new PMD_MORP_RECORD();
 		PMD_MORP_VERTEX_RECORD source = new PMD_MORP_VERTEX_RECORD();
 		PMD_MORP_VERTEX_RECORD source1 = new PMD_MORP_VERTEX_RECORD();
 		PMD_MORP_VERTEX_RECORD source2 = new PMD_MORP_VERTEX_RECORD();
-		if (pMorp == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		
 		m_morp = new PMD_MORP_RECORD(pMorp);
 		m_morp.getMv().clear();
 		if (pMorpBase == null) {
@@ -97,9 +97,7 @@ public class MMDMorp {
 	}
 
 	public boolean IsTarget(VMD_MORP_RECORD pMotion) {
-		if (pMotion == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert pMotion != null : "E_POINTER";
 		if (DataUtils.compare(m_morp.getName(), pMotion.getName(), 15) == 0) {
 			return true;
 		}
@@ -115,10 +113,9 @@ public class MMDMorp {
 	 *            モーション。nullは不可。
 	 */
 	public void addMotion(int offset, VMD_MORP_RECORD pMotion) {
+		assert pMotion != null : "E_POINTER";
+		
 		Motion pMot = null;
-		if (pMotion == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
 		try {
 			pMot = new Motion(offset, pMotion);
 		} catch (Throwable t) {
@@ -253,11 +250,9 @@ public class MMDMorp {
 		 *            モーション。nullは不可。
 		 */
 		public Motion(int offset, VMD_MORP_RECORD pMotion) {
+			assert pMotion != null;			
 			this.offset = offset;
 			this.m_motion = null;
-			if (pMotion == null) {
-				throw new IllegalArgumentException();
-			}
 			m_motion = pMotion;
 		}
 
@@ -291,9 +286,8 @@ public class MMDMorp {
 		private float offset;
 
 		public MotionSet(Motion motion1, Motion motion2, float offset) {
-			if (motion1 == null && motion2 == null) {
-				throw new IllegalArgumentException();
-			}
+			assert motion1 != null;
+			assert motion2 != null;
 			this.motion1 = motion1;
 			this.motion2 = motion2;
 			this.offset = offset;

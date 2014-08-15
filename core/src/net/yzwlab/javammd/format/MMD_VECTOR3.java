@@ -28,9 +28,7 @@ public class MMD_VECTOR3 implements Serializable {
 	}
 
 	public MMD_VECTOR3(MMD_VECTOR3 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 		this.z = source.z;
@@ -43,9 +41,7 @@ public class MMD_VECTOR3 implements Serializable {
 	 *            ソース。nullは不可。
 	 */
 	public void copyFrom(MMD_VECTOR3 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 		this.z = source.z;
@@ -87,9 +83,8 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR3 subtract(MMD_VECTOR3 pValue1, MMD_VECTOR3 pValue2) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert pValue1 != null : "E_POINTER";
+		assert pValue2 != null : "E_POINTER";
 		x = (pValue1.x - pValue2.x);
 		y = (pValue1.y - pValue2.y);
 		z = (pValue1.z - pValue2.z);
@@ -107,11 +102,9 @@ public class MMD_VECTOR3 implements Serializable {
 	 *            重み。
 	 * @return 自分自身。
 	 */
-	public MMD_VECTOR3 lerp(MMD_VECTOR3 pValue1, MMD_VECTOR3 pValue2,
-			float weight) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+	public MMD_VECTOR3 lerp(MMD_VECTOR3 pValue1, MMD_VECTOR3 pValue2, float weight) {
+		assert pValue1 != null : "E_POINTER";
+		assert pValue2 != null : "E_POINTER";
 		float t0 = 0.0f;
 		t0 = 1.0f - weight;
 		x = (pValue1.x * t0 + pValue2.x * weight);
@@ -128,9 +121,7 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return 内積。
 	 */
 	public float dotProduct(MMD_VECTOR3 pValue2) {
-		if (pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pValue2 != null;
 		return (x * pValue2.x + y * pValue2.y + z * pValue2.z);
 	}
 
@@ -142,9 +133,7 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR3 rotate(MMD_MATRIX pMatrix) {
-		if (pMatrix == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pMatrix != null;
 		float sourceX = x;
 		float sourceY = y;
 		float sourceZ = z;
@@ -165,9 +154,7 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR3 transform(MMD_MATRIX pMatrix) {
-		if (pMatrix == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pMatrix != null;
 		rotate(pMatrix);
 		x += (pMatrix.values[3][0]);
 		y += (pMatrix.values[3][1]);
@@ -185,9 +172,8 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return 外積。
 	 */
 	public MMD_VECTOR3 crossProduct(MMD_VECTOR3 pValue1, MMD_VECTOR3 pValue2) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pValue1 != null;
+		assert pValue2 != null;
 		x = (pValue1.y * pValue2.z - pValue1.z * pValue2.y);
 		y = (pValue1.z * pValue2.x - pValue1.x * pValue2.z);
 		z = (pValue1.x * pValue2.y - pValue1.y * pValue2.x);
@@ -202,9 +188,7 @@ public class MMD_VECTOR3 implements Serializable {
 	 * @return オイラー表現。
 	 */
 	public MMD_VECTOR4 createEuler(MMD_VECTOR4 buf) {
-		if (buf == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buf != null;
 		float cosX = 0.0f;
 		float cosY = 0.0f;
 		float cosZ = 0.0f;
@@ -231,9 +215,7 @@ public class MMD_VECTOR3 implements Serializable {
 	}
 
 	public MMD_VECTOR3 read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.x = buffer.readFloat();
 		this.y = buffer.readFloat();
 		this.z = buffer.readFloat();

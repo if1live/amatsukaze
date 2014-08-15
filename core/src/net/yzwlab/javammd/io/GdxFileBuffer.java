@@ -17,9 +17,7 @@ public class GdxFileBuffer extends StreamBuffer {
 	
 	@Override
 	public IReadBuffer createFromByteArray(byte[] data) throws ReadException {
-		if (data == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data != null;
 		return new ByteBuffer(data);
 	}
 }

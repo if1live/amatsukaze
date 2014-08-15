@@ -192,9 +192,7 @@ public class PMD_RIGID_BODY_RECORD implements Serializable {
 	}
 
 	public PMD_RIGID_BODY_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.szName = buffer.readByteArray(20);
 		this.unBoneIndex = buffer.readShort();
 		this.cbColGroupIndex = buffer.readByte();

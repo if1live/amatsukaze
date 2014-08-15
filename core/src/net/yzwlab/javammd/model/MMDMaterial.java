@@ -36,15 +36,14 @@ public class MMDMaterial {
 	protected boolean m_bVisible;
 
 	public MMDMaterial(PMD_MATERIAL_RECORD pMaterial) {
+		assert pMaterial != null;
+		
 		this.m_bVisible = false;
 		this.m_pVertexes = null;
 		this.m_texture = null;
 		this.m_material = new PMD_MATERIAL_RECORD();
 		m_pVertexes = null;
 		m_bVisible = true;
-		if (pMaterial == null) {
-			throw new IllegalArgumentException();
-		}
 		m_material = pMaterial;
 	}
 
@@ -60,9 +59,8 @@ public class MMDMaterial {
 	 * @return 次のオフセット。
 	 */
 	public int init(MMDVertexList pVertexList, List<MMDBone> bones, int offset) {
-		if (pVertexList == null || bones == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pVertexList != null;
+		assert bones != null;
 		Integer pNextOffset = 0;
 		MMD_VERTEX_DESC pOriginalVert = null;
 		PMD_VERTEX_RECORD vert = new PMD_VERTEX_RECORD();
@@ -123,9 +121,8 @@ public class MMDMaterial {
 	 */
 	public void prepare(IGLTextureProvider pTextureProvider,
 			final IGLTextureProvider.Handler handler) throws ReadException {
-		if (pTextureProvider == null || handler == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pTextureProvider != null;
+		assert handler != null;
 		if (m_material.getTextureFileName()[0] == '\0') {
 			return;
 		}
@@ -134,18 +131,16 @@ public class MMDMaterial {
 
 					@Override
 					public void onSuccess(byte[] filename, GLTexture desc) {
-						if (filename == null || desc == null) {
-							throw new IllegalArgumentException();
-						}
+						assert filename != null;
+						assert desc != null;
 						setTexture(desc);
 						handler.onSuccess(filename, desc);
 					}
 
 					@Override
 					public void onError(byte[] filename, Throwable error) {
-						if (filename == null || error == null) {
-							throw new IllegalArgumentException();
-						}
+						assert filename != null;
+						assert error != null;
 						handler.onError(filename, error);
 					}
 
@@ -174,9 +169,8 @@ public class MMDMaterial {
 	 *            描画対象プラットフォーム。nullは不可。
 	 */
 	public synchronized void draw(IGL gl) {
-		if (gl == null) {
-			throw new IllegalArgumentException();
-		}
+		assert gl != null;
+		
 		float dalpha = 0.0f;
 		if (m_bVisible == false) {
 			return;
@@ -251,9 +245,7 @@ public class MMDMaterial {
 	public void UpdateVisibility() {
 		MMDBone pBone = null;
 		boolean vis = false;
-		if (m_pVertexes == null) {
-			throw new IllegalArgumentException("E_UNEXPECTED");
-		}
+		assert m_pVertexes != null : "E_UNEXPECTED";
 		vis = true;
 		for (int i = 0; i < m_material.getNEdges(); i++) {
 			pBone = m_pVertexes[i].pOriginalVert.getBones()[0];
@@ -282,9 +274,7 @@ public class MMDMaterial {
 	 *            テクスチャ。nullは不可。
 	 */
 	private synchronized void setTexture(GLTexture texture) {
-		if (texture == null) {
-			throw new IllegalArgumentException();
-		}
+		assert texture != null;
 		m_texture = texture;
 	}
 

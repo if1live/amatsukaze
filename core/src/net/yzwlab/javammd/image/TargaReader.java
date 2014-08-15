@@ -19,9 +19,7 @@ public class TargaReader {
 	 *             読み込み関係のエラー。
 	 */
 	private static int get(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		return buffer.readUByte();
 	}
 
@@ -35,9 +33,7 @@ public class TargaReader {
 	 *             読み込み関係のエラー。
 	 */
 	private static int getInt16(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		return get(buffer) + (get(buffer) << 8);
 	}
 
@@ -51,9 +47,7 @@ public class TargaReader {
 	 *             読み込み関係のエラー。
 	 */
 	private static int getInt8(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		return get(buffer);
 	}
 
@@ -91,9 +85,8 @@ public class TargaReader {
 	 */
 	public IImage read(IImageService imageService, IReadBuffer buf)
 			throws ReadException {
-		if (imageService == null || buf == null) {
-			throw new IllegalArgumentException();
-		}
+		assert imageService != null;
+		assert buf != null;
 
 		// 00: ID field length
 		getInt8(buf);
@@ -147,9 +140,10 @@ public class TargaReader {
 
 	private IImage loadRGBImage(IImageService imageService, IReadBuffer buf)
 			throws ReadException {
-		if (imageService == null || buf == null) {
-			throw new IllegalArgumentException();
-		}
+		
+		assert imageService != null;
+		assert buf != null;
+		
 		System.out.println("RAW, " + info());
 		IImageService.Type bufferType = null;
 		assert depth % 8 == 0;
@@ -182,9 +176,8 @@ public class TargaReader {
 
 	private IImage loadRLERGBImage(IImageService imageService, IReadBuffer buf)
 			throws ReadException {
-		if (imageService == null || buf == null) {
-			throw new IllegalArgumentException();
-		}
+		assert imageService != null;
+		assert buf != null;
 		System.out.println("RLE, " + info());
 
 		IImageService.Type bufferType = null;

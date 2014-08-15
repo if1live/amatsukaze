@@ -38,9 +38,7 @@ public class PMD_HEADER implements Serializable {
 	}
 
 	public PMD_HEADER Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.header1 = buffer.readByteArray(0x1b);
 		this.header2 = buffer.readByteArray(0x100);
 		return this;

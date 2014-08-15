@@ -26,9 +26,8 @@ public class MMD_MATRIX implements Serializable {
 
 	public MMD_MATRIX(MMD_MATRIX source) {
 		this();
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
+		
 		for (int i = 0; i < source.values.length; i++) {
 			float[] values = source.values[i];
 			float[] destValues = this.values[i];
@@ -47,9 +46,7 @@ public class MMD_MATRIX implements Serializable {
 	}
 
 	public MMD_MATRIX read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.values = buffer.readFloatArray(4, 4);
 		return this;
 	}
@@ -89,9 +86,7 @@ public class MMD_MATRIX implements Serializable {
 	 *            ソース。nullは不可。
 	 */
 	public void copyFrom(MMD_MATRIX source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		for (int j = 0; j < 4; j++) {
 			for (int i = 0; i < 4; i++) {
 				values[j][i] = source.values[j][i];
@@ -107,9 +102,7 @@ public class MMD_MATRIX implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_MATRIX inverse(MMD_MATRIX matTemp) {
-		if (matTemp == null) {
-			throw new IllegalArgumentException();
-		}
+		assert matTemp != null;
 		matTemp.copyFrom(this);
 		generateIdentity();
 		for (int i = 0; i < 4; i++) {
@@ -139,9 +132,7 @@ public class MMD_MATRIX implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_MATRIX fromQuaternion(MMD_VECTOR4 pQuat) {
-		if (pQuat == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pQuat != null;
 		float x2 = pQuat.x * pQuat.x * 2.0f;
 		float y2 = pQuat.y * pQuat.y * 2.0f;
 		float z2 = pQuat.z * pQuat.z * 2.0f;
@@ -176,9 +167,9 @@ public class MMD_MATRIX implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_MATRIX multiply(MMD_MATRIX pValue1, MMD_MATRIX pValue2) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pValue1 != null;
+		assert pValue2 != null;
+		
 		float[][] values1 = pValue1.values;
 		float[][] values2 = pValue2.values;
 		for (int i = 0; i < 4; i++) {
@@ -210,9 +201,8 @@ public class MMD_MATRIX implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_MATRIX lerp(MMD_MATRIX pValue1, MMD_MATRIX pValue2, float weight) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pValue1 != null;
+		assert pValue2 != null;
 		float[][] fSrc1 = (pValue1.values);
 		float[][] fSrc2 = (pValue2.values);
 		float rev = 1.0f - weight;

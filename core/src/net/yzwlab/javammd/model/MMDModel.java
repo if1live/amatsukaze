@@ -65,9 +65,9 @@ public class MMDModel implements IGLObject {
 	 */
 	public void setPMD(IReadBuffer buffer, PMDFile pmdFile)
 			throws ReadException {
-		if (buffer == null || pmdFile == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
+		assert pmdFile != null;
+		
 		PMD_MORP_RECORD baseMorp = new PMD_MORP_RECORD();
 		PMD_BONE_RECORD bone = new PMD_BONE_RECORD();
 		List<PMD_BONE_RECORD> bones = new ArrayList<PMD_BONE_RECORD>();
@@ -139,9 +139,7 @@ public class MMDModel implements IGLObject {
 	 *             読み込み関係のエラー。
 	 */
 	public void openPMD(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		PMDFile pmdFile = new PMDFile();
 		boolean br = pmdFile.open(buffer);
 		if (br == false) {
@@ -161,9 +159,8 @@ public class MMDModel implements IGLObject {
 	 */
 	public IMotionSegment setVMD(IReadBuffer buffer, VMDFile vmdFile)
 			throws ReadException {
-		if (buffer == null || vmdFile == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
+		assert vmdFile != null;
 		boolean added = false;
 		boolean br = false;
 		VMD_MORP_RECORD morp = null;
@@ -233,9 +230,7 @@ public class MMDModel implements IGLObject {
 	 *             読み込み関係のエラー。
 	 */
 	public IMotionSegment openVMD(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		VMDFile vmdFile = new VMDFile();
 		boolean br = vmdFile.open(buffer);
 		if (br == false) {
@@ -247,9 +242,8 @@ public class MMDModel implements IGLObject {
 	@Override
 	public void prepare(IGLTextureProvider pTextureProvider,
 			IGLTextureProvider.Handler handler) throws ReadException {
-		if (pTextureProvider == null || handler == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pTextureProvider != null;
+		assert handler != null;
 		for (int i = 0; i < m_materials.size(); i++) {
 			m_materials.get(i).prepare(pTextureProvider, handler);
 		}
@@ -289,9 +283,7 @@ public class MMDModel implements IGLObject {
 	}
 
 	public void update(float frameNo) {
-		if (m_pVertexList == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert m_pVertexList != null : "E_POINTER";
 		updateMotion(frameNo);
 		for (int i = 0; i < m_bones.size(); i++) {
 			m_bones.get(i).updateSkinning();
@@ -301,9 +293,7 @@ public class MMDModel implements IGLObject {
 
 	@Override
 	public void draw(IGL gl) {
-		if (gl == null) {
-			throw new IllegalArgumentException();
-		}
+		assert gl != null;
 		updateVertexBuffer();
 		gl.glPushMatrix();
 		gl.glScalef(m_scale, m_scale, m_scale * -1.0f);
@@ -325,9 +315,7 @@ public class MMDModel implements IGLObject {
 	 *            Face名。nullは不可。
 	 */
 	public void setFace(byte[] faceName) {
-		if (faceName == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert faceName != null : "E_POINTER";
 		byte[] elemName = null;
 		byte[] name = null;
 		MMDMorp pElem = null;
@@ -561,9 +549,7 @@ public class MMDModel implements IGLObject {
 	 * 頂点情報をリセットします。
 	 */
 	public void resetVertexes() {
-		if (m_pVertexList == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert m_pVertexList != null : "E_POINTER";
 		m_pVertexList.ResetVertexes();
 	}
 
@@ -571,9 +557,7 @@ public class MMDModel implements IGLObject {
 	 * スキニング情報を更新します。
 	 */
 	public void updateSkinning() {
-		if (m_pVertexList == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert m_pVertexList != null : "E_POINTER";
 		for (int i = 0; i < m_bones.size(); i++) {
 			m_bones.get(i).updateSkinning();
 		}
@@ -636,9 +620,7 @@ public class MMDModel implements IGLObject {
 		 *            ボーン。nullは不可。
 		 */
 		public BoneAccessor(MMDBone bone) {
-			if (bone == null) {
-				throw new IllegalArgumentException();
-			}
+			assert bone != null;
 			this.bone = bone;
 		}
 
@@ -666,9 +648,7 @@ public class MMDModel implements IGLObject {
 		 *            マテリアル。nullは不可。
 		 */
 		public MaterialAccessor(MMDMaterial material) {
-			if (material == null) {
-				throw new IllegalArgumentException();
-			}
+			assert material != null;
 			this.material = material;
 		}
 

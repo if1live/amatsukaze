@@ -38,9 +38,7 @@ public class PMD_GRP_RECORD implements Serializable {
 	}
 
 	public PMD_GRP_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.BoneNo = buffer.readShort();
 		this.grp = buffer.readByte();
 		return this;

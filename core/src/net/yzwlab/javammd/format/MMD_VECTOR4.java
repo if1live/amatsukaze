@@ -31,9 +31,7 @@ public class MMD_VECTOR4 implements Serializable {
 	}
 
 	public MMD_VECTOR4(MMD_VECTOR4 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 		this.z = source.z;
@@ -47,9 +45,7 @@ public class MMD_VECTOR4 implements Serializable {
 	 *            ソース。nullは不可。
 	 */
 	public void copyFrom(MMD_VECTOR4 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 		this.z = source.z;
@@ -95,11 +91,10 @@ public class MMD_VECTOR4 implements Serializable {
 	 *            重み。
 	 * @return 自分自身。
 	 */
-	public MMD_VECTOR4 lerp(MMD_VECTOR4 pValue1, MMD_VECTOR4 pValue2,
-			float weight) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+	public MMD_VECTOR4 lerp(MMD_VECTOR4 pValue1, MMD_VECTOR4 pValue2, float weight) {
+		assert pValue1 != null;
+		assert pValue2 != null;
+		
 		float qr = pValue1.x * pValue2.x + pValue1.y * pValue2.y + pValue1.z
 				* pValue2.z + pValue1.w * pValue2.w;
 		float t0 = 1.0f - weight;
@@ -127,9 +122,8 @@ public class MMD_VECTOR4 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR4 multiply(MMD_VECTOR4 pValue1, MMD_VECTOR4 pValue2) {
-		if (pValue1 == null || pValue2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pValue1 != null;
+		assert pValue2 != null;
 		float px, py, pz, pw;
 		float qx, qy, qz, qw;
 		px = pValue1.x;
@@ -157,9 +151,7 @@ public class MMD_VECTOR4 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR4 createAxis(MMD_VECTOR3 pAxis, float rotAngle) {
-		if (pAxis == null) {
-			throw new IllegalArgumentException();
-		}
+		assert pAxis != null;
 		if (Math.abs(rotAngle) < 0.0001f) {
 			x = (0.0f);
 			y = (0.0f);
@@ -184,9 +176,7 @@ public class MMD_VECTOR4 implements Serializable {
 	 * @return バッファ。
 	 */
 	public MMD_VECTOR3 toEuler(MMD_VECTOR3 buf) {
-		if (buf == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buf != null;
 		float temp = 0.0f;
 		float wx2 = 0.0f;
 		float wy2 = 0.0f;
@@ -246,9 +236,7 @@ public class MMD_VECTOR4 implements Serializable {
 	 * @return 自分自身。
 	 */
 	public MMD_VECTOR4 limitAngle(MMD_VECTOR3 buffer) {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		MMD_VECTOR3 angle = toEuler(buffer);
 		if (angle.x < -3.14159f) {
 			angle.x = (-3.14159f);
@@ -262,9 +250,7 @@ public class MMD_VECTOR4 implements Serializable {
 	}
 
 	public MMD_VECTOR4 read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.x = buffer.readFloat();
 		this.y = buffer.readFloat();
 		this.z = buffer.readFloat();

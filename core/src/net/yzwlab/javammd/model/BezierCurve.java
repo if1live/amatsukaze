@@ -19,9 +19,8 @@ public class BezierCurve {
 	 * @return Y値。
 	 */
 	public static float calcYValue(float x, MMD_VECTOR2 p1, MMD_VECTOR2 p2) {
-		if (p1 == null || p2 == null) {
-			throw new IllegalArgumentException("E_POINTER");
-		}
+		assert p1 != null : "E_POINTER";
+		assert p2 != null : "E_POINTER";
 		float t = x;
 		float invt = 1.0f - t;
 		for (int i = 0; i < 32; i++) {
@@ -58,9 +57,8 @@ public class BezierCurve {
 	 *            点2。nullは不可。
 	 */
 	public BezierCurve(MMD_VECTOR2 p1, MMD_VECTOR2 p2) {
-		if (p1 == null || p2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert p1 != null;
+		assert p2 != null;
 		this.m_bLinear = false;
 		this.m_values = new float[16 + 1];
 		float addX = 0.0f;

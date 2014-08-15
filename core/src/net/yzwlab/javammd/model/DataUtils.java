@@ -17,9 +17,7 @@ public class DataUtils {
 	 * @return バイトデータ。
 	 */
 	public static byte[] offsetBytes(byte[] data, int offset) {
-		if (data == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data != null;
 		byte[] ret = new byte[data.length - offset];
 		for (int i = offset; i < data.length; i++) {
 			ret[i - offset] = data[i];
@@ -35,9 +33,7 @@ public class DataUtils {
 	 * @return 文字列。
 	 */
 	public static byte[] getStringData(byte[] data) {
-		if (data == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data != null;
 		int len = 0;
 		for (int i = 0; i < data.length; i++) {
 			if (data[i] == 0) {
@@ -62,9 +58,7 @@ public class DataUtils {
 	 * @return 文字列。
 	 */
 	public static byte[] getStringData(byte[] data, int maxLen) {
-		if (data == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data != null;
 		int len = maxLen;
 		for (int i = 0; i < data.length && i < maxLen; i++) {
 			if (data[i] == 0) {
@@ -91,9 +85,8 @@ public class DataUtils {
 	 * @return 文字列。
 	 */
 	public static int compare(byte[] data1, byte[] data2, int maxLen) {
-		if (data1 == null || data2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data1 != null;
+		assert data2 != null;
 		return compare(getStringData(data1, maxLen),
 				getStringData(data2, maxLen));
 	}
@@ -108,9 +101,8 @@ public class DataUtils {
 	 * @return 文字列。
 	 */
 	public static int compare(byte[] data1, byte[] data2) {
-		if (data1 == null || data2 == null) {
-			throw new IllegalArgumentException();
-		}
+		assert data1 != null;
+		assert data2 != null;
 		if (Arrays.equals(data1, data2)) {
 			return 0;
 		}

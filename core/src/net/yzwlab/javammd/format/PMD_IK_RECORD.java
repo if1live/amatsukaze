@@ -84,9 +84,8 @@ public class PMD_IK_RECORD implements Serializable {
 	}
 
 	public PMD_IK_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
+		
 		// is.read((char*)&parent,sizeof(parent))
 		this.parent = buffer.readShort();
 		// is.read((char*)&to,sizeof(to))

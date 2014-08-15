@@ -16,13 +16,13 @@ public class MMDVertexList {
 	protected MMD_VERTEX_DESC[] m_pVertexes;
 
 	public MMDVertexList(List<PMD_VERTEX_RECORD> pVertexes, List<Short> pIndices) {
+		assert pVertexes != null;
+		assert pIndices != null;
+		
 		this.m_pVertexes = null;
 		this.m_indices = new ArrayList<Short>();
 		this.m_vertexes = new ArrayList<PMD_VERTEX_RECORD>();
 		m_pVertexes = null;
-		if (pVertexes == null || pIndices == null) {
-			throw new IllegalArgumentException();
-		}
 		m_vertexes = pVertexes;
 		m_indices = pIndices;
 		CreateVertexDesc();

@@ -27,9 +27,7 @@ public class MMD_COLOR3 implements Serializable {
 	}
 
 	public MMD_COLOR3 Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.r = (byte)(buffer.readFloat() * 255);
 		this.g = (byte)(buffer.readFloat() * 255);
 		this.b = (byte)(buffer.readFloat() * 255);

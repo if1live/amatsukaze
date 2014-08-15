@@ -16,9 +16,7 @@ public abstract class StreamBuffer extends AbstractReadBuffer {
 	private long size;
 
 	public StreamBuffer(DataInput in, long size) {
-		if (in == null) {
-			throw new IllegalArgumentException();
-		}
+		assert in != null;
 		this.in = in;
 		this.position = 0;
 		this.size = size;

@@ -61,9 +61,7 @@ public class PMD_MATERIAL_RECORD implements Serializable {
 	}
 
 	public PMD_MATERIAL_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.diffuse = (new MMD_COLOR4()).Read(buffer);
 		this.shininess = buffer.readFloat();
 		this.specular = (new MMD_COLOR3()).Read(buffer);

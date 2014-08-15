@@ -73,9 +73,7 @@ public class VMDFile implements Serializable {
 	 *             読み込み関係のエラー。
 	 */
 	public boolean open(IReadBuffer fs) throws ReadException {
-		if (fs == null) {
-			throw new IllegalArgumentException();
-		}
+		assert fs != null;
 		int size = 0;
 		;
 		m_vmd_header = (new VMD_HEADER()).Read(fs);

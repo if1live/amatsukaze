@@ -148,9 +148,7 @@ public class PMD_VERTEX_RECORD implements Serializable {
 	}
 
 	public PMD_VERTEX_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.x = buffer.readFloat();
 		this.y = buffer.readFloat();
 		this.z = buffer.readFloat();

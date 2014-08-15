@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.yzwlab.javammd.IGLObject;
 import net.yzwlab.javammd.ReadException;
+import net.yzwlab.javammd.format.MMD_VECTOR3;
 import net.yzwlab.javammd.format.MMD_VERTEX_TEXUSE;
 import net.yzwlab.javammd.format.PMD_MATERIAL_RECORD;
 import net.yzwlab.javammd.io.GdxFileBuffer;

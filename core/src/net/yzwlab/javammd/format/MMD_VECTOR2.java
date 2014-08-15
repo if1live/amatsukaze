@@ -22,9 +22,7 @@ public class MMD_VECTOR2 implements Serializable {
 	}
 
 	public MMD_VECTOR2(MMD_VECTOR2 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 	}
@@ -36,17 +34,13 @@ public class MMD_VECTOR2 implements Serializable {
 	 *            ソース。nullは不可。
 	 */
 	public void copyFrom(MMD_VECTOR2 source) {
-		if (source == null) {
-			throw new IllegalArgumentException();
-		}
+		assert source != null;
 		this.x = source.x;
 		this.y = source.y;
 	}
 
 	public MMD_VECTOR2 Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.x = buffer.readFloat();
 		this.y = buffer.readFloat();
 		return this;

@@ -27,9 +27,7 @@ public class PMD_GRP_NAME_RECORD implements Serializable {
 	}
 
 	public PMD_GRP_NAME_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.name = buffer.readByteArray(50);
 		return this;
 	}

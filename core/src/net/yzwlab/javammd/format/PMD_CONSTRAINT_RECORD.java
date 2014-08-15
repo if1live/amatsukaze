@@ -137,9 +137,7 @@ public class PMD_CONSTRAINT_RECORD implements Serializable {
 	}
 
 	public PMD_CONSTRAINT_RECORD Read(IReadBuffer buffer) throws ReadException {
-		if (buffer == null) {
-			throw new IllegalArgumentException();
-		}
+		assert buffer != null;
 		this.szName = buffer.readByteArray(20);
 		this.ulRigidA = buffer.readLong();
 		this.ulRigidB = buffer.readLong();
