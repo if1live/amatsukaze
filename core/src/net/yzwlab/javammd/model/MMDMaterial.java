@@ -190,28 +190,28 @@ public class MMDMaterial {
 		boolean isGL_BLEND = false;
 
 		float[] matenv = new float[4];
-		matenv[0] = m_material.getDiffuse().r;
-		matenv[1] = m_material.getDiffuse().g;
-		matenv[2] = m_material.getDiffuse().b;
-		matenv[3] = m_material.getDiffuse().a * dalpha;
+		matenv[0] = m_material.diffuse.r;
+		matenv[1] = m_material.diffuse.g;
+		matenv[2] = m_material.diffuse.b;
+		matenv[3] = m_material.diffuse.a * dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_DIFFUSE, matenv);
-		matenv[0] = m_material.getAmbient().r;
-		matenv[1] = m_material.getAmbient().g;
-		matenv[2] = m_material.getAmbient().b;
+		matenv[0] = m_material.ambient.r;
+		matenv[1] = m_material.ambient.g;
+		matenv[2] = m_material.ambient.b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_AMBIENT, matenv);
-		matenv[0] = m_material.getSpecular().r;
-		matenv[1] = m_material.getSpecular().g;
-		matenv[2] = m_material.getSpecular().b;
+		matenv[0] = m_material.specular.r;
+		matenv[1] = m_material.specular.g;
+		matenv[2] = m_material.specular.b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_SPECULAR, matenv);
-		matenv[0] = m_material.getAmbient().r;
-		matenv[1] = m_material.getAmbient().g;
-		matenv[2] = m_material.getAmbient().b;
+		matenv[0] = m_material.ambient.r;
+		matenv[1] = m_material.ambient.g;
+		matenv[2] = m_material.ambient.b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_EMISSION, matenv);
 		gl.glMaterialf(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_SHININESS,
-				m_material.getShininess());
+				m_material.shininess);
 		gl.glEnableClientState(IGL.C.GL_VERTEX_ARRAY);
 		gl.glEnableClientState(IGL.C.GL_NORMAL_ARRAY);
 		if (m_texture != null) {

@@ -103,7 +103,7 @@ public class MikuMikuGame extends ApplicationAdapter {
 				vertices.add(v.uv.x);
 				vertices.add(v.uv.y);
 				
-				float color = pmdMtl.getDiffuse().toFloatBits(); 
+				float color = pmdMtl.diffuse.toFloatBits(); 
 				vertices.add(color);
 			}
 		}

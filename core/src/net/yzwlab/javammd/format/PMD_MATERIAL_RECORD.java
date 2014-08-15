@@ -12,13 +12,13 @@ public class PMD_MATERIAL_RECORD implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected MMD_COLOR4 diffuse;
+	public MMD_COLOR4 diffuse;
 
-	protected float shininess;
+	public float shininess;
 
-	protected MMD_COLOR3 specular;
+	public MMD_COLOR3 specular;
 
-	protected MMD_COLOR3 ambient;
+	public MMD_COLOR3 ambient;
 
 	protected short p12;
 
@@ -34,38 +34,6 @@ public class PMD_MATERIAL_RECORD implements Serializable {
 		this.p12 = 0;
 		this.nEdges = 0;
 		this.textureFileName = new byte[20];
-	}
-
-	public MMD_COLOR4 getDiffuse() {
-		return diffuse;
-	}
-
-	public void setDiffuse(MMD_COLOR4 diffuse) {
-		this.diffuse = diffuse;
-	}
-
-	public float getShininess() {
-		return shininess;
-	}
-
-	public void setShininess(float shininess) {
-		this.shininess = shininess;
-	}
-
-	public MMD_COLOR3 getSpecular() {
-		return specular;
-	}
-
-	public void setSpecular(MMD_COLOR3 specular) {
-		this.specular = specular;
-	}
-
-	public MMD_COLOR3 getAmbient() {
-		return ambient;
-	}
-
-	public void setAmbient(MMD_COLOR3 ambient) {
-		this.ambient = ambient;
 	}
 
 	public short getP12() {
