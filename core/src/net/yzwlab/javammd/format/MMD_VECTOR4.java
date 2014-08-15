@@ -12,13 +12,13 @@ public class MMD_VECTOR4 implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected float x;
+	public float x;
 
-	protected float y;
+	public float y;
 
-	protected float z;
+	public float z;
 
-	protected float w;
+	public float w;
 
 	/**
 	 * 構築します。
@@ -54,38 +54,6 @@ public class MMD_VECTOR4 implements Serializable {
 		this.y = source.y;
 		this.z = source.z;
 		this.w = source.w;
-	}
-
-	public float getX() {
-		return x;
-	}
-
-	public void setX(float x) {
-		this.x = x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public void setY(float y) {
-		this.y = y;
-	}
-
-	public float getZ() {
-		return z;
-	}
-
-	public void setZ(float z) {
-		this.z = z;
-	}
-
-	public float getW() {
-		return w;
-	}
-
-	public void setW(float w) {
-		this.w = w;
 	}
 
 	/**

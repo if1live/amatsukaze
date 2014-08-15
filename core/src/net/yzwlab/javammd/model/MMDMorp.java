@@ -187,9 +187,9 @@ public class MMDMorp {
 		MMD_VERTEX_TEXUSE buffer = new MMD_VERTEX_TEXUSE();
 		for (PMD_MORP_VERTEX_RECORD v : m_morp.getMv()) {
 			float[] values = v.getVec();
-			vec.setX(values[0]);
-			vec.setY(values[1]);
-			vec.setZ(values[2]);
+			vec.x = values[0];
+			vec.y = values[1];
+			vec.z = values[2];
 			jno = v.getNo();
 			MMD_VERTEX_TEXUSE faced = pOriginalVertexes[jno].getFaced(buffer);
 			faced.getPoint().lerp(faced.getPoint(), vec, weight);

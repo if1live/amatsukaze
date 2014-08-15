@@ -12,9 +12,9 @@ public class MMD_VECTOR2 implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected float x;
+	public float x;
 
-	protected float y;
+	public float y;
 
 	public MMD_VECTOR2() {
 		this.x = 0.0f;
@@ -41,22 +41,6 @@ public class MMD_VECTOR2 implements Serializable {
 		}
 		this.x = source.x;
 		this.y = source.y;
-	}
-
-	public float getX() {
-		return x;
-	}
-
-	public void setX(float x) {
-		this.x = x;
-	}
-
-	public float getY() {
-		return y;
-	}
-
-	public void setY(float y) {
-		this.y = y;
 	}
 
 	public MMD_VECTOR2 Read(IReadBuffer buffer) throws ReadException {

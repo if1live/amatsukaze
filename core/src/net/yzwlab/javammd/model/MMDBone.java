@@ -98,13 +98,13 @@ public class MMDBone {
 				throw new IllegalArgumentException("E_UNEXPECTED");
 			}
 			m_parent = bones.get(m_bone.getParent());
-			m_offset.setX(m_bone.getPos()[0] - m_parent.m_bone.getPos()[0]);
-			m_offset.setY(m_bone.getPos()[1] - m_parent.m_bone.getPos()[1]);
-			m_offset.setZ(m_bone.getPos()[2] - m_parent.m_bone.getPos()[2]);
+			m_offset.x = m_bone.getPos()[0] - m_parent.m_bone.getPos()[0];
+			m_offset.y = m_bone.getPos()[1] - m_parent.m_bone.getPos()[1];
+			m_offset.z = m_bone.getPos()[2] - m_parent.m_bone.getPos()[2];
 		} else {
-			m_offset.setX(m_bone.getPos()[0]);
-			m_offset.setY(m_bone.getPos()[1]);
-			m_offset.setZ(m_bone.getPos()[2]);
+			m_offset.x = m_bone.getPos()[0];
+			m_offset.y = m_bone.getPos()[1];
+			m_offset.z = m_bone.getPos()[2];
 		}
 		if ((m_bone.getTo() & 0x8000) == 0) {
 			if (m_bone.getTo() >= bones.size()) {
@@ -131,7 +131,7 @@ public class MMDBone {
 	public void reset() {
 		m_effectPosition.toZero();
 		m_effectRotation.toZero();
-		m_effectRotation.setW(1.0f);
+		m_effectRotation.w = 1.0f;
 		m_effectLocal.generateIdentity();
 		float[][] localValues = m_effectLocal.getValues();
 		localValues[3][0] = m_bone.getPos()[0];
@@ -285,9 +285,9 @@ public class MMDBone {
 	public void updateMatrix() {
 		m_effectLocal.fromQuaternion(m_effectRotation);
 		float[][] localValues = m_effectLocal.getValues();
-		localValues[3][0] = m_effectPosition.getX() + m_offset.getX();
-		localValues[3][1] = m_effectPosition.getY() + m_offset.getY();
-		localValues[3][2] = m_effectPosition.getZ() + m_offset.getZ();
+		localValues[3][0] = m_effectPosition.x + m_offset.x;
+		localValues[3][1] = m_effectPosition.y + m_offset.y;
+		localValues[3][2] = m_effectPosition.z + m_offset.z;
 		// String parentName = "NONE";
 		// if (m_parent != null) {
 		// parentName = new String(m_parent.getName());
@@ -342,9 +342,9 @@ public class MMDBone {
 			throw new IllegalArgumentException();
 		}
 		float[][] localValues = m_effectLocal.getValues();
-		buffer.setX(localValues[3][0]);
-		buffer.setY(localValues[3][1]);
-		buffer.setZ(localValues[3][2]);
+		buffer.x = localValues[3][0];
+		buffer.y = localValues[3][1];
+		buffer.z = localValues[3][2];
 		return buffer;
 	}
 
@@ -470,37 +470,37 @@ public class MMDBone {
 			m_pZBez = null;
 			m_pRotBez = null;
 			m_motion = pMotion;
-			m_pos.setX(m_motion.getPos()[0]);
-			m_pos.setY(m_motion.getPos()[1]);
-			m_pos.setZ(m_motion.getPos()[2]);
+			m_pos.x = m_motion.getPos()[0];
+			m_pos.y = m_motion.getPos()[1];
+			m_pos.z = m_motion.getPos()[2];
 			m_qt = new MMD_VECTOR4();
-			m_qt.setX(m_motion.getQt()[0]);
-			m_qt.setY(m_motion.getQt()[1]);
-			m_qt.setZ(m_motion.getQt()[2]);
-			m_qt.setW(m_motion.getQt()[3]);
+			m_qt.x = m_motion.getQt()[0];
+			m_qt.y = m_motion.getQt()[1];
+			m_qt.z = m_motion.getQt()[2];
+			m_qt.w = m_motion.getQt()[3];
 			m_qt.normalize();
 			MMD_MOTION_PAD pad = (new MMD_MOTION_PAD()).Read(buffer
 					.createFromByteArray(m_motion.getPad()));
 			MMD_VECTOR2 p1 = new MMD_VECTOR2(), p2 = new MMD_VECTOR2();
-			p1.setX(pad.getCInterpolationX()[0]);
-			p1.setY(pad.getCInterpolationX()[4]);
-			p2.setX(pad.getCInterpolationX()[8]);
-			p2.setY(pad.getCInterpolationX()[12]);
+			p1.x = pad.getCInterpolationX()[0];
+			p1.y = pad.getCInterpolationX()[4];
+			p2.x = pad.getCInterpolationX()[8];
+			p2.y = pad.getCInterpolationX()[12];
 			m_pXBez = new BezierCurve(p1, p2);
-			p1.setX(pad.getCInterpolationY()[0]);
-			p1.setY(pad.getCInterpolationY()[4]);
-			p2.setX(pad.getCInterpolationY()[8]);
-			p2.setY(pad.getCInterpolationY()[12]);
+			p1.x = pad.getCInterpolationY()[0];
+			p1.y = pad.getCInterpolationY()[4];
+			p2.x = pad.getCInterpolationY()[8];
+			p2.y = pad.getCInterpolationY()[12];
 			m_pYBez = new BezierCurve(p1, p2);
-			p1.setX(pad.getCInterpolationZ()[0]);
-			p1.setY(pad.getCInterpolationZ()[4]);
-			p2.setX(pad.getCInterpolationZ()[8]);
-			p2.setY(pad.getCInterpolationZ()[12]);
+			p1.x = pad.getCInterpolationZ()[0];
+			p1.y = pad.getCInterpolationZ()[4];
+			p2.x = pad.getCInterpolationZ()[8];
+			p2.y = pad.getCInterpolationZ()[12];
 			m_pZBez = new BezierCurve(p1, p2);
-			p1.setX(pad.getCInterpolationRot()[0]);
-			p1.setY(pad.getCInterpolationRot()[4]);
-			p2.setX(pad.getCInterpolationRot()[8]);
-			p2.setY(pad.getCInterpolationRot()[12]);
+			p1.x = pad.getCInterpolationRot()[0];
+			p1.y = pad.getCInterpolationRot()[4];
+			p2.x = pad.getCInterpolationRot()[8];
+			p2.y = pad.getCInterpolationRot()[12];
 			m_pRotBez = new BezierCurve(p1, p2);
 		}
 
@@ -530,14 +530,11 @@ public class MMDBone {
 			}
 			posLerp = 0.0f;
 			posLerp = m_pXBez.getValue(weight);
-			pDest.setX(pValue1.getX() * (1.0f - posLerp) + pValue2.getX()
-					* posLerp);
+			pDest.x = (pValue1.x * (1.0f - posLerp) + pValue2.x * posLerp);
 			posLerp = m_pYBez.getValue(weight);
-			pDest.setY(pValue1.getY() * (1.0f - posLerp) + pValue2.getY()
-					* posLerp);
+			pDest.y = (pValue1.y * (1.0f - posLerp) + pValue2.y * posLerp);
 			posLerp = m_pZBez.getValue(weight);
-			pDest.setZ(pValue1.getZ() * (1.0f - posLerp) + pValue2.getZ()
-					* posLerp);
+			pDest.z = (pValue1.z * (1.0f - posLerp) + pValue2.z * posLerp);
 			return pDest;
 		}
 

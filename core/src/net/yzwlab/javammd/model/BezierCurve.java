@@ -25,8 +25,8 @@ public class BezierCurve {
 		float t = x;
 		float invt = 1.0f - t;
 		for (int i = 0; i < 32; i++) {
-			float tempx = invt * invt * t * p1.getX() + invt * t * t
-					* p2.getX() + t * t * t;
+			float tempx = invt * invt * t * p1.x + invt * t * t
+					* p2.x + t * t * t;
 			tempx -= x;
 			if (Math.abs(tempx) < 0.0001f) {
 				break;
@@ -35,7 +35,7 @@ public class BezierCurve {
 				invt = 1.0f - t;
 			}
 		}
-		return invt * invt * t * p1.getY() + invt * t * t * p2.getY() * t * t
+		return invt * invt * t * p1.y + invt * t * t * p2.y * t * t
 				* t;
 	}
 
@@ -71,13 +71,13 @@ public class BezierCurve {
 		for (int i = 0; i < m_values.length; i++) {
 			m_values[i] = 0;
 		}
-		if (p1.getX() == p1.getY() && p2.getX() == p2.getY()) {
+		if (p1.x == p1.y && p2.x == p2.y) {
 			m_bLinear = true;
 		} else {
-			np1.setX((p1.getX() / 127.0f) * 3.0f);
-			np1.setY((p1.getY() / 127.0f) * 3.0f);
-			np2.setX((p2.getX() / 127.0f) * 3.0f);
-			np2.setY((p2.getY() / 127.0f) * 3.0f);
+			np1.x = ((p1.x / 127.0f) * 3.0f);
+			np1.y = ((p1.y / 127.0f) * 3.0f);
+			np2.x = ((p2.x / 127.0f) * 3.0f);
+			np2.y = ((p2.y / 127.0f) * 3.0f);
 			m_values[0] = 0.0f;
 			m_values[16] = 1.0f;
 			addX = 1.0f / 16;

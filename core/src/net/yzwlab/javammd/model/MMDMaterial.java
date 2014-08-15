@@ -190,24 +190,24 @@ public class MMDMaterial {
 		boolean isGL_BLEND = false;
 
 		float[] matenv = new float[4];
-		matenv[0] = m_material.getDiffuse().getR();
-		matenv[1] = m_material.getDiffuse().getG();
-		matenv[2] = m_material.getDiffuse().getB();
-		matenv[3] = m_material.getDiffuse().getA() * dalpha;
+		matenv[0] = m_material.getDiffuse().r;
+		matenv[1] = m_material.getDiffuse().g;
+		matenv[2] = m_material.getDiffuse().b;
+		matenv[3] = m_material.getDiffuse().a * dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_DIFFUSE, matenv);
-		matenv[0] = m_material.getAmbient().getR();
-		matenv[1] = m_material.getAmbient().getG();
-		matenv[2] = m_material.getAmbient().getB();
+		matenv[0] = m_material.getAmbient().r;
+		matenv[1] = m_material.getAmbient().g;
+		matenv[2] = m_material.getAmbient().b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_AMBIENT, matenv);
-		matenv[0] = m_material.getSpecular().getR();
-		matenv[1] = m_material.getSpecular().getG();
-		matenv[2] = m_material.getSpecular().getB();
+		matenv[0] = m_material.getSpecular().r;
+		matenv[1] = m_material.getSpecular().g;
+		matenv[2] = m_material.getSpecular().b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_SPECULAR, matenv);
-		matenv[0] = m_material.getAmbient().getR();
-		matenv[1] = m_material.getAmbient().getG();
-		matenv[2] = m_material.getAmbient().getB();
+		matenv[0] = m_material.getAmbient().r;
+		matenv[1] = m_material.getAmbient().g;
+		matenv[2] = m_material.getAmbient().b;
 		matenv[3] = dalpha;
 		gl.glMaterialfv(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_EMISSION, matenv);
 		gl.glMaterialf(IGL.C.GL_FRONT_AND_BACK, IGL.C.GL_SHININESS,

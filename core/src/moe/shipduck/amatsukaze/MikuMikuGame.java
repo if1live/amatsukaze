@@ -92,20 +92,20 @@ public class MikuMikuGame extends ApplicationAdapter {
 			for (MMD_VERTEX_UNIT unit : material.getVertices()) {
 				MMD_VERTEX_TEXUSE v = unit.pCurrentVert;
 				
-				vertices.add(v.point.getX());
-				vertices.add(v.point.getY());
-				vertices.add(v.point.getZ());
+				vertices.add(v.point.x);
+				vertices.add(v.point.y);
+				vertices.add(v.point.z);
 				
-				vertices.add(v.normal.getX());
-				vertices.add(v.normal.getY());
-				vertices.add(v.normal.getZ());
+				vertices.add(v.normal.x);
+				vertices.add(v.normal.y);
+				vertices.add(v.normal.z);
 				
-				vertices.add(v.uv.getX());
-				vertices.add(v.uv.getY());
+				vertices.add(v.uv.x);
+				vertices.add(v.uv.y);
 				
-				vertices.add(pmdMtl.getDiffuse().getR());
-				vertices.add(pmdMtl.getDiffuse().getG());
-				vertices.add(pmdMtl.getDiffuse().getB());
+				vertices.add(pmdMtl.getDiffuse().r);
+				vertices.add(pmdMtl.getDiffuse().g);
+				vertices.add(pmdMtl.getDiffuse().b);
 				vertices.add(1.0f);
 			}
 		}
