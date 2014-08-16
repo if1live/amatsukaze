@@ -1,32 +1,26 @@
 package moe.shipduck.amatsukaze;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.PMDFile;
 import net.yzwlab.javammd.format.PMD_MATERIAL_RECORD;
 import net.yzwlab.javammd.format.PMD_VERTEX_RECORD;
 import net.yzwlab.javammd.io.GdxByteBuffer;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.VertexAttribute;
-import com.badlogic.gdx.graphics.VertexAttributes.Usage;
-import com.badlogic.gdx.graphics.g3d.Attribute;
 import com.badlogic.gdx.graphics.g3d.Material;
 import com.badlogic.gdx.graphics.g3d.attributes.ColorAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.FloatAttribute;
-import com.badlogic.gdx.graphics.g3d.attributes.IntAttribute;
 import com.badlogic.gdx.graphics.g3d.attributes.TextureAttribute;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Matrix4;
 
-public class DevGame extends ApplicationAdapter {
+
+public class DevGame extends BaseGame {
 	Mesh mesh;
 	String vertexShader = "attribute vec4 a_position;    \n" + 
             "uniform mat4 u_worldView;\n" + 
@@ -46,6 +40,8 @@ public class DevGame extends ApplicationAdapter {
 	
 	@Override
 	public void create() {
+		super.create();
+		
 		FileHandle pmdFileHandle = Gdx.files.internal("test.pmd");
 		PMDFile pmdFile = new PMDFile();
 		try {
@@ -97,13 +93,19 @@ public class DevGame extends ApplicationAdapter {
 				material.set(TextureAttribute.createDiffuse(texture));
 			}
 		}
+		
+		
 	}
+
 	
 	@Override
 	public void render() {
 		draw();
 		update();
+		
+		super.render();
 	}
+	
 	public void update() {
 		
 	}
