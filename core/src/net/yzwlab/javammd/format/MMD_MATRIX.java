@@ -1,21 +1,13 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
 /**
  * 行列を表現するクラスです。
  */
-public class MMD_MATRIX implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	protected float[][] values;
+public class MMD_MATRIX {
+	public float[][] values;
 
 	/**
 	 * 構築します。
@@ -37,18 +29,8 @@ public class MMD_MATRIX implements Serializable {
 		}
 	}
 
-	public float[][] getValues() {
-		return values;
-	}
-
-	public void setValues(float[][] values) {
-		this.values = values;
-	}
-
 	public MMD_MATRIX read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.values = buffer.readFloatArray(4, 4);
-		return this;
+		return BasicReader.read(buffer, this);
 	}
 
 	/**

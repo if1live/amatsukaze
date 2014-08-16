@@ -1,17 +1,9 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class MMD_VECTOR2 implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class MMD_VECTOR2 {
 	public float x;
 
 	public float y;
@@ -39,11 +31,8 @@ public class MMD_VECTOR2 implements Serializable {
 		this.y = source.y;
 	}
 
-	public MMD_VECTOR2 Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.x = buffer.readFloat();
-		this.y = buffer.readFloat();
-		return this;
+	public MMD_VECTOR2 read(IReadBuffer buffer) throws ReadException {
+		return BasicReader.read(buffer, this);
 	}
 }
 

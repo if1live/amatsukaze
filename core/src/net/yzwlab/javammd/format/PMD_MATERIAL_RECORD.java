@@ -1,17 +1,9 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class PMD_MATERIAL_RECORD implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
+public class PMD_MATERIAL_RECORD {
 	public MMD_COLOR4 diffuse;
 
 	public float shininess;
@@ -20,11 +12,11 @@ public class PMD_MATERIAL_RECORD implements Serializable {
 
 	public MMD_COLOR3 ambient;
 
-	protected short p12;
+	public short p12;
 
-	protected int nEdges;
+	public int nEdges;
 
-	protected byte[] textureFileName;
+	public byte[] textureFileName;
 
 	public PMD_MATERIAL_RECORD() {
 		this.diffuse = new MMD_COLOR4();
@@ -36,39 +28,7 @@ public class PMD_MATERIAL_RECORD implements Serializable {
 		this.textureFileName = new byte[20];
 	}
 
-	public short getP12() {
-		return p12;
-	}
-
-	public void setP12(short p12) {
-		this.p12 = p12;
-	}
-
-	public int getNEdges() {
-		return nEdges;
-	}
-
-	public void setNEdges(int nEdges) {
-		this.nEdges = nEdges;
-	}
-
-	public byte[] getTextureFileName() {
-		return textureFileName;
-	}
-
-	public void setTextureFileName(byte[] textureFileName) {
-		this.textureFileName = textureFileName;
-	}
-
-	public PMD_MATERIAL_RECORD Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.diffuse = (new MMD_COLOR4()).Read(buffer);
-		this.shininess = buffer.readFloat();
-		this.specular = (new MMD_COLOR3()).Read(buffer);
-		this.ambient = (new MMD_COLOR3()).Read(buffer);
-		this.p12 = buffer.readShort();
-		this.nEdges = buffer.readInteger();
-		this.textureFileName = buffer.readByteArray(20);
-		return this;
+	public PMD_MATERIAL_RECORD read(IReadBuffer buffer) throws ReadException {
+		return PMD_Reader.read(buffer, this);
 	}
 }

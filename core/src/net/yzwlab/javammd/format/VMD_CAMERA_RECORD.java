@@ -1,24 +1,16 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class VMD_CAMERA_RECORD implements Serializable {
+public class VMD_CAMERA_RECORD {
+	public int frame_no;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public float[] pos;
 
-	protected int frame_no;
+	public float[] angle;
 
-	protected float[] pos;
-
-	protected float[] angle;
-
-	protected byte[] pad;
+	public byte[] pad;
 
 	public VMD_CAMERA_RECORD() {
 		this.pad = new byte[29];
@@ -28,12 +20,7 @@ public class VMD_CAMERA_RECORD implements Serializable {
 		System.arraycopy(VMDFile.c_hokan_data2, 0, pad, 0, pad.length);
 	}
 
-	public VMD_CAMERA_RECORD Read(IReadBuffer buffer) throws ReadException {
-		frame_no = buffer.readInteger();
-		pos = buffer.readFloatArray(4);
-		angle = buffer.readFloatArray(3);
-		pad = buffer.readByteArray(29);
-		return this;
+	public VMD_CAMERA_RECORD read(IReadBuffer buffer) throws ReadException {
+		return VMD_Reader.read(buffer, this);
 	}
-
 }

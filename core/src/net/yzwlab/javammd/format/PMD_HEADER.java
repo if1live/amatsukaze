@@ -1,46 +1,22 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class PMD_HEADER implements Serializable {
+public class PMD_HEADER {
+	public static final int HEADER_1_SIZE = 0x1b;
+	public static final int HEADER_2_SIZE = 0x100; 
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public byte[] header1;
 
-	protected byte[] header1;
-
-	protected byte[] header2;
+	public byte[] header2;
 
 	public PMD_HEADER() {
-		this.header1 = new byte[0x1b];
-		this.header2 = new byte[0x100];
+		this.header1 = new byte[HEADER_1_SIZE];
+		this.header2 = new byte[HEADER_2_SIZE];
 	}
 
-	public byte[] getHeader1() {
-		return header1;
-	}
-
-	public void setHeader1(byte[] header1) {
-		this.header1 = header1;
-	}
-
-	public byte[] getHeader2() {
-		return header2;
-	}
-
-	public void setHeader2(byte[] header2) {
-		this.header2 = header2;
-	}
-
-	public PMD_HEADER Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.header1 = buffer.readByteArray(0x1b);
-		this.header2 = buffer.readByteArray(0x100);
-		return this;
+	public PMD_HEADER read(IReadBuffer buffer) throws ReadException {
+		return PMD_Reader.read(buffer, this);
 	}
 }

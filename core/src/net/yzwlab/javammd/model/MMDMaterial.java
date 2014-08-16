@@ -64,37 +64,37 @@ public class MMDMaterial {
 		Integer pNextOffset = 0;
 		MMD_VERTEX_DESC pOriginalVert = null;
 		PMD_VERTEX_RECORD vert = new PMD_VERTEX_RECORD();
-		m_pVertexes = new MMD_VERTEX_UNIT[m_material.getNEdges()];
-		for (int i = 0; i < m_material.getNEdges(); i++) {
+		m_pVertexes = new MMD_VERTEX_UNIT[m_material.nEdges];
+		for (int i = 0; i < m_material.nEdges; i++) {
 			pOriginalVert = pVertexList.GetVertexDesc(i + offset);
 			m_pVertexes[i] = new MMD_VERTEX_UNIT(pOriginalVert,
 					new MMD_VERTEX_TEXUSE());
 			m_pVertexes[i].pOriginalVert
 					.copyCurrentTo(m_pVertexes[i].pCurrentVert);
 			vert = pVertexList.GetVertex(i + offset);
-			if (vert.getB1() >= bones.size()) {
+			if (vert.b1 >= bones.size()) {
 				throw new IllegalArgumentException("E_UNEXPECTED");
 			}
-			MMDBone targetBone = bones.get(vert.getB1());
+			MMDBone targetBone = bones.get(vert.b1);
 			if (targetBone == null) {
 				throw new IllegalArgumentException("Bone not found: "
-						+ vert.getB1());
+						+ vert.b1);
 			}
 			MMDBone[] tbones = new MMDBone[2];
 			tbones[0] = targetBone;
-			if (vert.getB2() >= bones.size()) {
+			if (vert.b2 >= bones.size()) {
 				throw new IllegalArgumentException("E_UNEXPECTED");
 			}
-			targetBone = bones.get(vert.getB2());
+			targetBone = bones.get(vert.b2);
 			if (targetBone == null) {
 				throw new IllegalArgumentException("Bone not found: "
-						+ vert.getB2());
+						+ vert.b2);
 			}
 			tbones[1] = targetBone;
 			m_pVertexes[i].pOriginalVert.setBones(tbones);
-			m_pVertexes[i].pOriginalVert.setBweight((vert.getBw() / 100.0f));
+			m_pVertexes[i].pOriginalVert.setBweight((vert.bw / 100.0f));
 		}
-		pNextOffset = offset + m_material.getNEdges();
+		pNextOffset = offset + m_material.nEdges;
 		return pNextOffset;
 	}
 
@@ -123,10 +123,10 @@ public class MMDMaterial {
 			final IGLTextureProvider.Handler handler) throws ReadException {
 		assert pTextureProvider != null;
 		assert handler != null;
-		if (m_material.getTextureFileName()[0] == '\0') {
+		if (m_material.textureFileName[0] == '\0') {
 			return;
 		}
-		pTextureProvider.load(m_material.getTextureFileName(),
+		pTextureProvider.load(m_material.textureFileName,
 				new IGLTextureProvider.Handler() {
 
 					@Override
@@ -247,7 +247,7 @@ public class MMDMaterial {
 		boolean vis = false;
 		assert m_pVertexes != null : "E_UNEXPECTED";
 		vis = true;
-		for (int i = 0; i < m_material.getNEdges(); i++) {
+		for (int i = 0; i < m_material.nEdges; i++) {
 			pBone = m_pVertexes[i].pOriginalVert.getBones()[0];
 			if (pBone != null) {
 				vis = pBone.isVisible();

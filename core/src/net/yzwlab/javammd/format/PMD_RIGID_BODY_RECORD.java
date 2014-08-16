@@ -1,48 +1,40 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class PMD_RIGID_BODY_RECORD implements Serializable {
+public class PMD_RIGID_BODY_RECORD {
+	public byte[] szName;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public short unBoneIndex;
 
-	protected byte[] szName;
+	public byte cbColGroupIndex;
 
-	protected short unBoneIndex;
+	public short unColGroupMask;
 
-	protected byte cbColGroupIndex;
+	public byte cbShapeType;
 
-	protected short unColGroupMask;
+	public float fWidth;
 
-	protected byte cbShapeType;
+	public float fHeight;
 
-	protected float fWidth;
+	public float fDepth;
 
-	protected float fHeight;
+	public float[] pos;
 
-	protected float fDepth;
+	public float[] rotation;
 
-	protected float[] pos;
+	public float fMass;
 
-	protected float[] rotation;
+	public float fLinearDamping;
 
-	protected float fMass;
+	public float fAngularDamping;
 
-	protected float fLinearDamping;
+	public float fRestitution;
 
-	protected float fAngularDamping;
+	public float fFriction;
 
-	protected float fRestitution;
-
-	protected float fFriction;
-
-	protected byte cbRigidBodyType;
+	public byte cbRigidBodyType;
 
 	public PMD_RIGID_BODY_RECORD() {
 		this.szName = new byte[20];
@@ -63,152 +55,7 @@ public class PMD_RIGID_BODY_RECORD implements Serializable {
 		this.cbRigidBodyType = 0;
 	}
 
-	public byte[] getSzname() {
-		return szName;
-	}
-
-	public void setSzname(byte[] szName) {
-		this.szName = szName;
-	}
-
-	public short getUnboneindex() {
-		return unBoneIndex;
-	}
-
-	public void setUnboneindex(short unBoneIndex) {
-		this.unBoneIndex = unBoneIndex;
-	}
-
-	public byte getCbcolgroupindex() {
-		return cbColGroupIndex;
-	}
-
-	public void setCbcolgroupindex(byte cbColGroupIndex) {
-		this.cbColGroupIndex = cbColGroupIndex;
-	}
-
-	public short getUncolgroupmask() {
-		return unColGroupMask;
-	}
-
-	public void setUncolgroupmask(short unColGroupMask) {
-		this.unColGroupMask = unColGroupMask;
-	}
-
-	public byte getCbshapetype() {
-		return cbShapeType;
-	}
-
-	public void setCbshapetype(byte cbShapeType) {
-		this.cbShapeType = cbShapeType;
-	}
-
-	public float getFwidth() {
-		return fWidth;
-	}
-
-	public void setFwidth(float fWidth) {
-		this.fWidth = fWidth;
-	}
-
-	public float getFheight() {
-		return fHeight;
-	}
-
-	public void setFheight(float fHeight) {
-		this.fHeight = fHeight;
-	}
-
-	public float getFdepth() {
-		return fDepth;
-	}
-
-	public void setFdepth(float fDepth) {
-		this.fDepth = fDepth;
-	}
-
-	public float[] getPos() {
-		return pos;
-	}
-
-	public void setPos(float[] pos) {
-		this.pos = pos;
-	}
-
-	public float[] getRotation() {
-		return rotation;
-	}
-
-	public void setRotation(float[] rotation) {
-		this.rotation = rotation;
-	}
-
-	public float getFmass() {
-		return fMass;
-	}
-
-	public void setFmass(float fMass) {
-		this.fMass = fMass;
-	}
-
-	public float getFlineardamping() {
-		return fLinearDamping;
-	}
-
-	public void setFlineardamping(float fLinearDamping) {
-		this.fLinearDamping = fLinearDamping;
-	}
-
-	public float getFangulardamping() {
-		return fAngularDamping;
-	}
-
-	public void setFangulardamping(float fAngularDamping) {
-		this.fAngularDamping = fAngularDamping;
-	}
-
-	public float getFrestitution() {
-		return fRestitution;
-	}
-
-	public void setFrestitution(float fRestitution) {
-		this.fRestitution = fRestitution;
-	}
-
-	public float getFfriction() {
-		return fFriction;
-	}
-
-	public void setFfriction(float fFriction) {
-		this.fFriction = fFriction;
-	}
-
-	public byte getCbrigidbodytype() {
-		return cbRigidBodyType;
-	}
-
-	public void setCbrigidbodytype(byte cbRigidBodyType) {
-		this.cbRigidBodyType = cbRigidBodyType;
-	}
-
-	public PMD_RIGID_BODY_RECORD Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.szName = buffer.readByteArray(20);
-		this.unBoneIndex = buffer.readShort();
-		this.cbColGroupIndex = buffer.readByte();
-		this.unColGroupMask = buffer.readShort();
-		this.cbShapeType = buffer.readByte();
-		this.fWidth = buffer.readFloat();
-		this.fHeight = buffer.readFloat();
-		this.fDepth = buffer.readFloat();
-		this.pos = buffer.readFloatArray(3);
-		this.rotation = buffer.readFloatArray(3);
-		this.fMass = buffer.readFloat();
-		this.fLinearDamping = buffer.readFloat();
-		this.fAngularDamping = buffer.readFloat();
-		this.fRestitution = buffer.readFloat();
-		this.fFriction = buffer.readFloat();
-		this.cbRigidBodyType = buffer.readByte();
-		return this;
+	public PMD_RIGID_BODY_RECORD read(IReadBuffer buffer) throws ReadException {
+		return PMD_Reader.read(buffer, this);
 	}
 }

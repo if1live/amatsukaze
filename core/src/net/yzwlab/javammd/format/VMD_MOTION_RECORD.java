@@ -1,26 +1,18 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class VMD_MOTION_RECORD implements Serializable {
+public class VMD_MOTION_RECORD {
+	public byte[] name;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public int frame_no;
 
-	protected byte[] name;
+	public float[] pos;
 
-	protected int frame_no;
+	public float[] qt;
 
-	protected float[] pos;
-
-	protected float[] qt;
-
-	protected byte[] pad;
+	public byte[] pad;
 
 	public VMD_MOTION_RECORD() {
 		this.pad = new byte[0x40];
@@ -31,53 +23,7 @@ public class VMD_MOTION_RECORD implements Serializable {
 		System.arraycopy(VMDFile.c_hokan_data, 0, pad, 0, pad.length);
 	}
 
-	public VMD_MOTION_RECORD Read(IReadBuffer buffer) throws ReadException {
-		name = buffer.readByteArray(15);
-		frame_no = buffer.readInteger();
-		pos = buffer.readFloatArray(3);
-		qt = buffer.readFloatArray(4);
-		pad = buffer.readByteArray(0x40);
-		return this;
+	public VMD_MOTION_RECORD read(IReadBuffer buffer) throws ReadException {
+		return VMD_Reader.read(buffer, this);
 	}
-
-	public byte[] getName() {
-		return name;
-	}
-
-	public void setName(byte[] name) {
-		this.name = name;
-	}
-
-	public int getFrameNo() {
-		return frame_no;
-	}
-
-	public void setFrameNo(int frame_no) {
-		this.frame_no = frame_no;
-	}
-
-	public float[] getPos() {
-		return pos;
-	}
-
-	public void setPos(float[] pos) {
-		this.pos = pos;
-	}
-
-	public float[] getQt() {
-		return qt;
-	}
-
-	public void setQt(float[] qt) {
-		this.qt = qt;
-	}
-
-	public byte[] getPad() {
-		return pad;
-	}
-
-	public void setPad(byte[] pad) {
-		this.pad = pad;
-	}
-
 }

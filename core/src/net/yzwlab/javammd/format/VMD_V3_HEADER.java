@@ -1,18 +1,10 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class VMD_V3_HEADER implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	protected byte[] actor;
+public class VMD_V3_HEADER {
+	public byte[] actor;
 
 	public VMD_V3_HEADER() {
 		this.actor = new byte[20];
@@ -20,9 +12,8 @@ public class VMD_V3_HEADER implements Serializable {
 				Math.min(actor.length, VMDFile.c_actor_v3.length));
 	}
 
-	public VMD_V3_HEADER Read(IReadBuffer buffer) throws ReadException {
-		actor = buffer.readByteArray(20);
-		return this;
+	public VMD_V3_HEADER read(IReadBuffer buffer) throws ReadException {
+		return VMD_Reader.read(buffer, this);
 	}
 
 }

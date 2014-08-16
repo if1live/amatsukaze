@@ -1,38 +1,30 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class PMD_CONSTRAINT_RECORD implements Serializable {
+public class PMD_CONSTRAINT_RECORD {
+	public byte[] szName;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public long ulRigidA;
 
-	protected byte[] szName;
+	public long ulRigidB;
 
-	protected long ulRigidA;
+	public float[] pos;
 
-	protected long ulRigidB;
+	public float[] rotation;
 
-	protected float[] pos;
+	public float[] posLimitL;
 
-	protected float[] rotation;
+	public float[] posLimitU;
 
-	protected float[] posLimitL;
+	public float[] rotLimitL;
 
-	protected float[] posLimitU;
+	public float[] rotLimitU;
 
-	protected float[] rotLimitL;
+	public float[] springPos;
 
-	protected float[] rotLimitU;
-
-	protected float[] springPos;
-
-	protected float[] springRot;
+	public float[] springRot;
 
 	public PMD_CONSTRAINT_RECORD() {
 		this.szName = new byte[20];
@@ -48,107 +40,7 @@ public class PMD_CONSTRAINT_RECORD implements Serializable {
 		this.springRot = new float[3];
 	}
 
-	public byte[] getSzname() {
-		return szName;
-	}
-
-	public void setSzname(byte[] szName) {
-		this.szName = szName;
-	}
-
-	public long getUlrigida() {
-		return ulRigidA;
-	}
-
-	public void setUlrigida(long ulRigidA) {
-		this.ulRigidA = ulRigidA;
-	}
-
-	public long getUlrigidb() {
-		return ulRigidB;
-	}
-
-	public void setUlrigidb(long ulRigidB) {
-		this.ulRigidB = ulRigidB;
-	}
-
-	public float[] getPos() {
-		return pos;
-	}
-
-	public void setPos(float[] pos) {
-		this.pos = pos;
-	}
-
-	public float[] getRotation() {
-		return rotation;
-	}
-
-	public void setRotation(float[] rotation) {
-		this.rotation = rotation;
-	}
-
-	public float[] getPoslimitl() {
-		return posLimitL;
-	}
-
-	public void setPoslimitl(float[] posLimitL) {
-		this.posLimitL = posLimitL;
-	}
-
-	public float[] getPoslimitu() {
-		return posLimitU;
-	}
-
-	public void setPoslimitu(float[] posLimitU) {
-		this.posLimitU = posLimitU;
-	}
-
-	public float[] getRotlimitl() {
-		return rotLimitL;
-	}
-
-	public void setRotlimitl(float[] rotLimitL) {
-		this.rotLimitL = rotLimitL;
-	}
-
-	public float[] getRotlimitu() {
-		return rotLimitU;
-	}
-
-	public void setRotlimitu(float[] rotLimitU) {
-		this.rotLimitU = rotLimitU;
-	}
-
-	public float[] getSpringpos() {
-		return springPos;
-	}
-
-	public void setSpringpos(float[] springPos) {
-		this.springPos = springPos;
-	}
-
-	public float[] getSpringrot() {
-		return springRot;
-	}
-
-	public void setSpringrot(float[] springRot) {
-		this.springRot = springRot;
-	}
-
-	public PMD_CONSTRAINT_RECORD Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.szName = buffer.readByteArray(20);
-		this.ulRigidA = buffer.readLong();
-		this.ulRigidB = buffer.readLong();
-		this.pos = buffer.readFloatArray(3);
-		this.rotation = buffer.readFloatArray(3);
-		this.posLimitL = buffer.readFloatArray(3);
-		this.posLimitU = buffer.readFloatArray(3);
-		this.rotLimitL = buffer.readFloatArray(3);
-		this.rotLimitU = buffer.readFloatArray(3);
-		this.springPos = buffer.readFloatArray(3);
-		this.springRot = buffer.readFloatArray(3);
-		return this;
+	public PMD_CONSTRAINT_RECORD read(IReadBuffer buffer) throws ReadException {
+		return PMD_Reader.read(buffer, this);
 	}
 }

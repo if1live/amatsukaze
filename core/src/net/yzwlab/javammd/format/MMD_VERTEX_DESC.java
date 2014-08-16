@@ -80,8 +80,8 @@ public class MMD_VERTEX_DESC implements Serializable {
 
 	public void setFaced(PMD_MORP_VERTEX_RECORD v) {
 		assert v != null;
-		float[] values = v.getVec();
-		MMD_VECTOR3 point = faced.getPoint();
+		float[] values = v.vec;
+		MMD_VECTOR3 point = faced.point;
 		point.x = (values[0]);
 		point.y = (values[1]);
 		point.z = (values[2]);
@@ -89,7 +89,7 @@ public class MMD_VERTEX_DESC implements Serializable {
 
 	public void setFaced(MMD_VECTOR3 v) {
 		assert v != null;
-		faced.getPoint().copyFrom(v);
+		faced.point.copyFrom(v);
 	}
 
 	public MMDBone[] getBones() {

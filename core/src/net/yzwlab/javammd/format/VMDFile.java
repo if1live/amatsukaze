@@ -76,13 +76,13 @@ public class VMDFile implements Serializable {
 		assert fs != null;
 		int size = 0;
 		;
-		m_vmd_header = (new VMD_HEADER()).Read(fs);
+		m_vmd_header = (new VMD_HEADER()).read(fs);
 		if (Arrays.equals(DataUtils.getStringData(GetVersion()), new byte[] {
 				(byte) 102, (byte) 105, (byte) 108, (byte) 101 })) {
-			m_vmd_v2_header = (new VMD_V2_HEADER()).Read(fs);
+			m_vmd_v2_header = (new VMD_V2_HEADER()).read(fs);
 		} else if (Arrays.equals(DataUtils.getStringData(GetVersion()),
 				new byte[] { (byte) 48, (byte) 48, (byte) 48, (byte) 50 })) {
-			m_vmd_v3_header = (new VMD_V3_HEADER()).Read(fs);
+			m_vmd_v3_header = (new VMD_V3_HEADER()).read(fs);
 		} else {
 			;
 			return false;
@@ -92,7 +92,7 @@ public class VMDFile implements Serializable {
 			SetMotionChunkSize(size);
 			List<VMD_MOTION_RECORD> buff = GetMotionChunk();
 			for (int ai = 0; ai < size; ai++) {
-				buff.get(ai).Read(fs);
+				buff.get(ai).read(fs);
 			}
 			;
 			Collections.sort(buff, new Comparator<VMD_MOTION_RECORD>() {
@@ -107,7 +107,7 @@ public class VMDFile implements Serializable {
 			SetMorpChunkSize(size);
 			List<VMD_MORP_RECORD> buff = GetMorpChunk();
 			for (int ai = 0; ai < size; ai++) {
-				buff.get(ai).Read(fs);
+				buff.get(ai).read(fs);
 			}
 			;
 			Collections.sort(buff, new Comparator<VMD_MORP_RECORD>() {
@@ -122,7 +122,7 @@ public class VMDFile implements Serializable {
 			SetCameraChunkSize(size);
 			List<VMD_CAMERA_RECORD> buff = GetCameraChunk();
 			for (int ai = 0; ai < size; ai++) {
-				buff.get(ai).Read(fs);
+				buff.get(ai).read(fs);
 			}
 			;
 			Collections.sort(buff, new Comparator<VMD_CAMERA_RECORD>() {

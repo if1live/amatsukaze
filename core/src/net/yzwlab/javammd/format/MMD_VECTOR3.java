@@ -215,11 +215,7 @@ public class MMD_VECTOR3 implements Serializable {
 	}
 
 	public MMD_VECTOR3 read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.x = buffer.readFloat();
-		this.y = buffer.readFloat();
-		this.z = buffer.readFloat();
-		return this;
+		return BasicReader.read(buffer, this);
 	}
 
 	@Override

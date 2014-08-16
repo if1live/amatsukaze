@@ -1,28 +1,20 @@
 package net.yzwlab.javammd.format;
 
-import java.io.Serializable;
-
 import net.yzwlab.javammd.IReadBuffer;
 import net.yzwlab.javammd.ReadException;
 
-public class PMD_BONE_RECORD implements Serializable {
+public class PMD_BONE_RECORD {
+	public byte[] name;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public short parent;
 
-	protected byte[] name;
+	public short to;
 
-	protected short parent;
+	public byte kind;
 
-	protected short to;
+	public short knum;
 
-	protected byte kind;
-
-	protected short knum;
-
-	protected float[] pos;
+	public float[] pos;
 
 	public PMD_BONE_RECORD() {
 		this.name = new byte[20];
@@ -33,62 +25,7 @@ public class PMD_BONE_RECORD implements Serializable {
 		this.pos = new float[3];
 	}
 
-	public byte[] getName() {
-		return name;
-	}
-
-	public void setName(byte[] name) {
-		this.name = name;
-	}
-
-	public short getParent() {
-		return parent;
-	}
-
-	public void setParent(short parent) {
-		this.parent = parent;
-	}
-
-	public short getTo() {
-		return to;
-	}
-
-	public void setTo(short to) {
-		this.to = to;
-	}
-
-	public byte getKind() {
-		return kind;
-	}
-
-	public void setKind(byte kind) {
-		this.kind = kind;
-	}
-
-	public short getKnum() {
-		return knum;
-	}
-
-	public void setKnum(short knum) {
-		this.knum = knum;
-	}
-
-	public float[] getPos() {
-		return pos;
-	}
-
-	public void setPos(float[] pos) {
-		this.pos = pos;
-	}
-
-	public PMD_BONE_RECORD Read(IReadBuffer buffer) throws ReadException {
-		assert buffer != null;
-		this.name = buffer.readByteArray(20);
-		this.parent = buffer.readShort();
-		this.to = buffer.readShort();
-		this.kind = buffer.readByte();
-		this.knum = buffer.readShort();
-		this.pos = buffer.readFloatArray(3);
-		return this;
+	public PMD_BONE_RECORD read(IReadBuffer buffer) throws ReadException {
+		return PMD_Reader.read(buffer, this);
 	}
 }

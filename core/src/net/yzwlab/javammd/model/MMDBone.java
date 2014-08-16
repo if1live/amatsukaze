@@ -91,29 +91,29 @@ public class MMDBone {
 	}
 
 	public void init(List<MMDBone> bones) {
-		if ((m_bone.getParent() & 0x8000) == 0) {
-			if (m_bone.getParent() >= bones.size()) {
+		if ((m_bone.parent & 0x8000) == 0) {
+			if (m_bone.parent >= bones.size()) {
 				throw new IllegalArgumentException("E_UNEXPECTED");
 			}
-			m_parent = bones.get(m_bone.getParent());
-			m_offset.x = m_bone.getPos()[0] - m_parent.m_bone.getPos()[0];
-			m_offset.y = m_bone.getPos()[1] - m_parent.m_bone.getPos()[1];
-			m_offset.z = m_bone.getPos()[2] - m_parent.m_bone.getPos()[2];
+			m_parent = bones.get(m_bone.parent);
+			m_offset.x = m_bone.pos[0] - m_parent.m_bone.pos[0];
+			m_offset.y = m_bone.pos[1] - m_parent.m_bone.pos[1];
+			m_offset.z = m_bone.pos[2] - m_parent.m_bone.pos[2];
 		} else {
-			m_offset.x = m_bone.getPos()[0];
-			m_offset.y = m_bone.getPos()[1];
-			m_offset.z = m_bone.getPos()[2];
+			m_offset.x = m_bone.pos[0];
+			m_offset.y = m_bone.pos[1];
+			m_offset.z = m_bone.pos[2];
 		}
-		if ((m_bone.getTo() & 0x8000) == 0) {
-			if (m_bone.getTo() >= bones.size()) {
+		if ((m_bone.to & 0x8000) == 0) {
+			if (m_bone.to >= bones.size()) {
 				throw new IllegalArgumentException("E_UNEXPECTED");
 			}
-			m_pChild = bones.get(m_bone.getTo());
+			m_pChild = bones.get(m_bone.to);
 		}
 		m_invTransform.generateIdentity();
-		m_invTransform.getValues()[3][0] = -m_bone.getPos()[0];
-		m_invTransform.getValues()[3][1] = -m_bone.getPos()[1];
-		m_invTransform.getValues()[3][2] = -m_bone.getPos()[2];
+		m_invTransform.values[3][0] = -m_bone.pos[0];
+		m_invTransform.values[3][1] = -m_bone.pos[1];
+		m_invTransform.values[3][2] = -m_bone.pos[2];
 		reset();
 	}
 
@@ -131,10 +131,10 @@ public class MMDBone {
 		m_effectRotation.toZero();
 		m_effectRotation.w = 1.0f;
 		m_effectLocal.generateIdentity();
-		float[][] localValues = m_effectLocal.getValues();
-		localValues[3][0] = m_bone.getPos()[0];
-		localValues[3][1] = m_bone.getPos()[1];
-		localValues[3][2] = m_bone.getPos()[2];
+		float[][] localValues = m_effectLocal.values;
+		localValues[3][0] = m_bone.pos[0];
+		localValues[3][1] = m_bone.pos[1];
+		localValues[3][2] = m_bone.pos[2];
 		return;
 	}
 
@@ -143,12 +143,12 @@ public class MMDBone {
 	}
 
 	public byte[] getName() {
-		return DataUtils.getStringData(m_bone.getName());
+		return DataUtils.getStringData(m_bone.name);
 	}
 
 	public boolean isTarget(VMD_MOTION_RECORD pMotion) {
 		assert pMotion != null : "E_POINTER";
-		if (DataUtils.compare(m_bone.getName(), pMotion.getName(), 15) == 0) {
+		if (DataUtils.compare(m_bone.name, pMotion.name, 15) == 0) {
 			return true;
 		}
 		return false;
@@ -195,13 +195,13 @@ public class MMDBone {
 			MMD_VERTEX_TEXUSE pDest) {
 		assert pOriginal != null : "E_POINTER";
 		assert pDest != null : "E_POINTER";
-		MMD_VECTOR3 point = pDest.getPoint();
-		point.copyFrom(pOriginal.getPoint());
+		MMD_VECTOR3 point = pDest.point;
+		point.copyFrom(pOriginal.point);
 		point.transform(m_effectSkinning);
-		MMD_VECTOR3 normal = pDest.getNormal();
-		normal.copyFrom(pOriginal.getNormal());
+		MMD_VECTOR3 normal = pDest.normal;
+		normal.copyFrom(pOriginal.normal);
 		normal.rotate(m_effectSkinning);
-		pDest.getUv().copyFrom(pOriginal.getUv());
+		pDest.uv.copyFrom(pOriginal.uv);
 		return pDest;
 	}
 
@@ -229,13 +229,13 @@ public class MMDBone {
 		assert skinning != null;
 		
 		skinning.lerp(m_effectSkinning, pBone.m_effectSkinning, bweight);
-		MMD_VECTOR3 point = pDest.getPoint();
-		point.copyFrom(pOriginal.getPoint());
+		MMD_VECTOR3 point = pDest.point;
+		point.copyFrom(pOriginal.point);
 		point.transform(skinning);
-		MMD_VECTOR3 normal = pDest.getNormal();
-		normal.copyFrom(pOriginal.getNormal());
+		MMD_VECTOR3 normal = pDest.normal;
+		normal.copyFrom(pOriginal.normal);
 		normal.rotate(skinning);
-		pDest.getUv().copyFrom(pOriginal.getUv());
+		pDest.uv.copyFrom(pOriginal.uv);
 		return pDest;
 	}
 
@@ -279,7 +279,7 @@ public class MMDBone {
 	 */
 	public void updateMatrix() {
 		m_effectLocal.fromQuaternion(m_effectRotation);
-		float[][] localValues = m_effectLocal.getValues();
+		float[][] localValues = m_effectLocal.values;
 		localValues[3][0] = m_effectPosition.x + m_offset.x;
 		localValues[3][1] = m_effectPosition.y + m_offset.y;
 		localValues[3][2] = m_effectPosition.z + m_offset.z;
@@ -310,10 +310,10 @@ public class MMDBone {
 
 	public void updateIKLimitAngle() {
 		// TODO 暫定措置
-		if (Arrays.equals(DataUtils.getStringData(m_bone.getName(), 20),
+		if (Arrays.equals(DataUtils.getStringData(m_bone.name, 20),
 				new byte[] { (byte) -115, (byte) -74, (byte) -126, (byte) -48,
 						(byte) -126, (byte) -76 }/* 左ひざ */)
-				|| Arrays.equals(DataUtils.getStringData(m_bone.getName(), 20),
+				|| Arrays.equals(DataUtils.getStringData(m_bone.name, 20),
 						new byte[] { (byte) -119, (byte) 69, (byte) -126,
 								(byte) -48, (byte) -126, (byte) -76 } /* 右ひざ */)) {
 			m_bIKLimitAngle = true;
@@ -334,7 +334,7 @@ public class MMDBone {
 	 */
 	public MMD_VECTOR3 getPositionFromLocal(MMD_VECTOR3 buffer) {
 		assert buffer != null;
-		float[][] localValues = m_effectLocal.getValues();
+		float[][] localValues = m_effectLocal.values;
 		buffer.x = localValues[3][0];
 		buffer.y = localValues[3][1];
 		buffer.z = localValues[3][2];
@@ -459,37 +459,37 @@ public class MMDBone {
 			m_pZBez = null;
 			m_pRotBez = null;
 			m_motion = pMotion;
-			m_pos.x = m_motion.getPos()[0];
-			m_pos.y = m_motion.getPos()[1];
-			m_pos.z = m_motion.getPos()[2];
+			m_pos.x = m_motion.pos[0];
+			m_pos.y = m_motion.pos[1];
+			m_pos.z = m_motion.pos[2];
 			m_qt = new MMD_VECTOR4();
-			m_qt.x = m_motion.getQt()[0];
-			m_qt.y = m_motion.getQt()[1];
-			m_qt.z = m_motion.getQt()[2];
-			m_qt.w = m_motion.getQt()[3];
+			m_qt.x = m_motion.qt[0];
+			m_qt.y = m_motion.qt[1];
+			m_qt.z = m_motion.qt[2];
+			m_qt.w = m_motion.qt[3];
 			m_qt.normalize();
-			MMD_MOTION_PAD pad = (new MMD_MOTION_PAD()).Read(buffer
-					.createFromByteArray(m_motion.getPad()));
+			MMD_MOTION_PAD pad = (new MMD_MOTION_PAD()).read(buffer
+					.createFromByteArray(m_motion.pad));
 			MMD_VECTOR2 p1 = new MMD_VECTOR2(), p2 = new MMD_VECTOR2();
-			p1.x = pad.getCInterpolationX()[0];
-			p1.y = pad.getCInterpolationX()[4];
-			p2.x = pad.getCInterpolationX()[8];
-			p2.y = pad.getCInterpolationX()[12];
+			p1.x = pad.cInterpolationX[0];
+			p1.y = pad.cInterpolationX[4];
+			p2.x = pad.cInterpolationX[8];
+			p2.y = pad.cInterpolationX[12];
 			m_pXBez = new BezierCurve(p1, p2);
-			p1.x = pad.getCInterpolationY()[0];
-			p1.y = pad.getCInterpolationY()[4];
-			p2.x = pad.getCInterpolationY()[8];
-			p2.y = pad.getCInterpolationY()[12];
+			p1.x = pad.cInterpolationY[0];
+			p1.y = pad.cInterpolationY[4];
+			p2.x = pad.cInterpolationY[8];
+			p2.y = pad.cInterpolationY[12];
 			m_pYBez = new BezierCurve(p1, p2);
-			p1.x = pad.getCInterpolationZ()[0];
-			p1.y = pad.getCInterpolationZ()[4];
-			p2.x = pad.getCInterpolationZ()[8];
-			p2.y = pad.getCInterpolationZ()[12];
+			p1.x = pad.cInterpolationZ[0];
+			p1.y = pad.cInterpolationZ[4];
+			p2.x = pad.cInterpolationZ[8];
+			p2.y = pad.cInterpolationZ[12];
 			m_pZBez = new BezierCurve(p1, p2);
-			p1.x = pad.getCInterpolationRot()[0];
-			p1.y = pad.getCInterpolationRot()[4];
-			p2.x = pad.getCInterpolationRot()[8];
-			p2.y = pad.getCInterpolationRot()[12];
+			p1.x = pad.cInterpolationRot[0];
+			p1.y = pad.cInterpolationRot[4];
+			p2.x = pad.cInterpolationRot[8];
+			p2.y = pad.cInterpolationRot[12];
 			m_pRotBez = new BezierCurve(p1, p2);
 		}
 
@@ -499,7 +499,7 @@ public class MMDBone {
 		 * @return このモーションのフレーム番号。
 		 */
 		public int getFrameNo() {
-			return m_motion.getFrameNo() + offset;
+			return m_motion.frame_no + offset;
 		}
 
 		public void getVectors(MMD_VECTOR3 pos, MMD_VECTOR4 qt) {

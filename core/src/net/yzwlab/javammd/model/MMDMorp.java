@@ -46,27 +46,27 @@ public class MMDMorp {
 		PMD_MORP_VERTEX_RECORD source2 = new PMD_MORP_VERTEX_RECORD();
 		
 		m_morp = new PMD_MORP_RECORD(pMorp);
-		m_morp.getMv().clear();
+		m_morp.mv.clear();
 		if (pMorpBase == null) {
-			for (int i = 0; i < pMorp.getMv().size(); i++) {
-				source = pMorp.getMv().get(i);
+			for (int i = 0; i < pMorp.mv.size(); i++) {
+				source = pMorp.mv.get(i);
 				PMD_MORP_VERTEX_RECORD vert = new PMD_MORP_VERTEX_RECORD();
-				vert.getVec()[0] = source.getVec()[0];
-				vert.getVec()[1] = source.getVec()[1];
-				vert.getVec()[2] = source.getVec()[2];
-				vert.setNo(source.getNo());
-				m_morp.getMv().add(vert);
+				vert.vec[0] = source.vec[0];
+				vert.vec[1] = source.vec[1];
+				vert.vec[2] = source.vec[2];
+				vert.no = source.no;
+				m_morp.mv.add(vert);
 			}
 		} else {
-			for (int i = 0; i < pMorp.getMv().size(); i++) {
-				source1 = pMorp.getMv().get(i);
-				source2 = pMorpBase.getMv().get(source1.getNo());
+			for (int i = 0; i < pMorp.mv.size(); i++) {
+				source1 = pMorp.mv.get(i);
+				source2 = pMorpBase.mv.get(source1.no);
 				PMD_MORP_VERTEX_RECORD vert = new PMD_MORP_VERTEX_RECORD();
-				vert.getVec()[0] = (source1.getVec()[0] + source2.getVec()[0]);
-				vert.getVec()[1] = (source1.getVec()[1] + source2.getVec()[1]);
-				vert.getVec()[2] = (source1.getVec()[2] + source2.getVec()[2]);
-				vert.setNo(source2.getNo());
-				m_morp.getMv().add(vert);
+				vert.vec[0] = (source1.vec[0] + source2.vec[0]);
+				vert.vec[1] = (source1.vec[1] + source2.vec[1]);
+				vert.vec[2] = (source1.vec[2] + source2.vec[2]);
+				vert.no = source2.no;
+				m_morp.mv.add(vert);
 			}
 		}
 	}
@@ -86,7 +86,7 @@ public class MMDMorp {
 	}
 
 	public byte[] GetName() {
-		return DataUtils.getStringData(m_morp.getName(), 20);
+		return DataUtils.getStringData(m_morp.name, 20);
 	}
 
 	public Integer GetMaxFrame() {
@@ -98,7 +98,7 @@ public class MMDMorp {
 
 	public boolean IsTarget(VMD_MORP_RECORD pMotion) {
 		assert pMotion != null : "E_POINTER";
-		if (DataUtils.compare(m_morp.getName(), pMotion.getName(), 15) == 0) {
+		if (DataUtils.compare(m_morp.name, pMotion.name, 15) == 0) {
 			return true;
 		}
 		return false;
@@ -167,8 +167,8 @@ public class MMDMorp {
 	}
 
 	public MMD_VERTEX_DESC[] Set(MMD_VERTEX_DESC[] pOriginalVertexes) {
-		for (PMD_MORP_VERTEX_RECORD v : m_morp.getMv()) {
-			int jno = v.getNo();
+		for (PMD_MORP_VERTEX_RECORD v : m_morp.mv) {
+			int jno = v.no;
 			pOriginalVertexes[jno].setFaced(v);
 		}
 		return pOriginalVertexes;
@@ -182,14 +182,14 @@ public class MMDMorp {
 		}
 		MMD_VECTOR3 vec = new MMD_VECTOR3();
 		MMD_VERTEX_TEXUSE buffer = new MMD_VERTEX_TEXUSE();
-		for (PMD_MORP_VERTEX_RECORD v : m_morp.getMv()) {
-			float[] values = v.getVec();
+		for (PMD_MORP_VERTEX_RECORD v : m_morp.mv) {
+			float[] values = v.vec;
 			vec.x = values[0];
 			vec.y = values[1];
 			vec.z = values[2];
-			jno = v.getNo();
+			jno = v.no;
 			MMD_VERTEX_TEXUSE faced = pOriginalVertexes[jno].getFaced(buffer);
-			faced.getPoint().lerp(faced.getPoint(), vec, weight);
+			faced.point.lerp(faced.point, vec, weight);
 			pOriginalVertexes[jno].setFaced(faced);
 		}
 		return pOriginalVertexes;
@@ -266,12 +266,12 @@ public class MMDMorp {
 		 * @return フレーム番号。
 		 */
 		public int getFrameNo() {
-			return m_motion.getFrameNo() + offset;
+			return m_motion.frame_no + offset;
 		}
 
 		public float GetRate() {
 			Float pRate = 0.0f;
-			pRate = m_motion.getFactor();
+			pRate = m_motion.factor;
 			return pRate;
 		}
 

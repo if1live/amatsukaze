@@ -47,7 +47,7 @@ public class MMDIK {
 	 */
 	public MMDIK(PMD_IK_RECORD ik) {
 		assert ik != null;
-		if (ik.getLink().size() == 0) {
+		if (ik.link.size() == 0) {
 			throw new IllegalArgumentException();
 		}
 		this.m_bones = new ArrayList<MMDBone>();
@@ -70,11 +70,11 @@ public class MMDIK {
 	public void init(List<MMDBone> bones) {
 		assert bones != null;
 		MMDBone pBone = null;
-		m_pTarget = bones.get(m_ik.getParent());
-		m_pEffect = bones.get(m_ik.getTo());
-		m_fact = (float) (m_ik.getFact() * Math.PI);
-		for (int i = 0; i < m_ik.getLink().size(); i++) {
-			pBone = bones.get(m_ik.getLink().get(i));
+		m_pTarget = bones.get(m_ik.parent);
+		m_pEffect = bones.get(m_ik.to);
+		m_fact = (float) (m_ik.fact * Math.PI);
+		for (int i = 0; i < m_ik.link.size(); i++) {
+			pBone = bones.get(m_ik.link.get(i));
 			m_bones.add(pBone);
 			pBone.updateIKLimitAngle();
 		}
@@ -123,7 +123,7 @@ public class MMDIK {
 		MMD_VECTOR3 rotAxis = new MMD_VECTOR3();
 		MMD_VECTOR3 rotQuatBuf = new MMD_VECTOR3();
 		MMD_VECTOR3 effectOriginalPosition = new MMD_VECTOR3();
-		for (int it = 0; it < m_ik.getCount(); it++) {
+		for (int it = 0; it < m_ik.count; it++) {
 			int index = 0;
 			for (Iterator<MMDBone> bit = m_bones.iterator(); bit.hasNext(); index++) {
 				MMDBone pBone = bit.next();
@@ -201,10 +201,10 @@ public class MMDIK {
 
 	public int GetSortValue() {
 		Integer pNum = 0;
-		if (m_ik.getLink().size() == 0) {
+		if (m_ik.link.size() == 0) {
 			throw new IllegalArgumentException("E_UNEXPECTED");
 		}
-		pNum = new Integer((Short) (m_ik.getLink().get(0)).shortValue());
+		pNum = new Integer((Short) (m_ik.link.get(0)).shortValue());
 		return pNum;
 	}
 

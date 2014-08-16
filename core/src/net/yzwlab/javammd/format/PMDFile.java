@@ -71,12 +71,12 @@ public class PMDFile implements Serializable {
 		int size = 0;
 		byte size_b = 0;
 		short size_w = 0;
-		m_header = (new PMD_HEADER()).Read(fs);
+		m_header = (new PMD_HEADER()).read(fs);
 		size = fs.readInteger();
 		SetVertexChunkSize(size);
 		if (size != 0)
 			for (int ai = 0; ai < size; ai++) {
-				GetVertexChunk().get(ai).Read(fs);
+				GetVertexChunk().get(ai).read(fs);
 			}
 		;
 		size = fs.readInteger();
@@ -90,25 +90,25 @@ public class PMDFile implements Serializable {
 		SetMaterialChunkSize(size);
 		if (size != 0)
 			for (int ai = 0; ai < size; ai++) {
-				GetMaterialChunk().get(ai).Read(fs);
+				GetMaterialChunk().get(ai).read(fs);
 			}
 		;
 		size_w = fs.readShort();
 		SetBoneChunkSize(size_w);
 		if (size_w != 0)
 			for (int ai = 0; ai < size_w; ai++) {
-				GetBoneChunk().get(ai).Read(fs);
+				GetBoneChunk().get(ai).read(fs);
 			}
 		;
 		size_w = fs.readShort();
 		SetIKChunkSize(size_w);
 		for (int i = 0; i < size_w; i++) {
-			GetIKChunk().get(i).Read(fs);
+			GetIKChunk().get(i).read(fs);
 		}
 		size_w = fs.readShort();
 		SetMorpChunkSize(size_w);
 		for (int i = 0; i < size_w; i++) {
-			GetMorpChunk().get(i).Read(fs);
+			GetMorpChunk().get(i).read(fs);
 		}
 		size_b = fs.readByte();
 		SetCtrlChunkSize(size_b);
@@ -121,14 +121,14 @@ public class PMDFile implements Serializable {
 		SetGrpNameChunkSize(size_b);
 		if (size_b != 0)
 			for (int ai = 0; ai < size_b; ai++) {
-				GetGrpNameChunk().get(ai).Read(fs);
+				GetGrpNameChunk().get(ai).read(fs);
 			}
 		;
 		size = fs.readInteger();
 		SetGrpChunkSize(size);
 		if (size != 0)
 			for (int ai = 0; ai < size; ai++) {
-				GetGrpChunk().get(ai).Read(fs);
+				GetGrpChunk().get(ai).read(fs);
 			}
 		;
 		if (fs.isEOF()) {
@@ -162,7 +162,7 @@ public class PMDFile implements Serializable {
 		SetRigidBodyChunkSize(size);
 		if (size != 0) {
 			for (int ai = 0; ai < size; ai++) {
-				GetRigidBodyChunk().get(ai).Read(fs);
+				GetRigidBodyChunk().get(ai).read(fs);
 			}
 			;
 		}
@@ -170,7 +170,7 @@ public class PMDFile implements Serializable {
 		SetConstraintChunkSize(size);
 		if (size != 0) {
 			for (int ai = 0; ai < size; ai++) {
-				GetConstraintChunk().get(ai).Read(fs);
+				GetConstraintChunk().get(ai).read(fs);
 			}
 			;
 		}
