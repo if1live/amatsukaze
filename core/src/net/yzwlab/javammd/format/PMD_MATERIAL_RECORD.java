@@ -31,4 +31,8 @@ public class PMD_MATERIAL_RECORD {
 	public PMD_MATERIAL_RECORD read(IReadBuffer buffer) throws ReadException {
 		return PMD_Reader.read(buffer, this);
 	}
+	
+	public String getTextureFileName() {
+		return ParserUtil.byteToString(textureFileName);
+	}
 }
