@@ -581,8 +581,7 @@ public class MMDBone {
 		private float offset;
 
 		public MotionSet(Motion motion1, Motion motion2, float offset) {
-			assert motion1 != null;
-			assert motion2 != null;
+			assert !(motion1 == null && motion2 == null);
 			if (offset >= 1.0f) {
 				throw new IllegalArgumentException();
 			}

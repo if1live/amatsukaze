@@ -286,8 +286,7 @@ public class MMDMorp {
 		private float offset;
 
 		public MotionSet(Motion motion1, Motion motion2, float offset) {
-			assert motion1 != null;
-			assert motion2 != null;
+			assert !(motion1 == null && motion2 == null);
 			this.motion1 = motion1;
 			this.motion2 = motion2;
 			this.offset = offset;

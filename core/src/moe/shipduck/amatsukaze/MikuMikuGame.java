@@ -258,7 +258,10 @@ public class MikuMikuGame extends ApplicationAdapter {
 		}
 
 		//TODO slow operator
-		//updateModel(this.model);
+		if(mesh != null) {
+			mesh.dispose();
+		}
+		updateModel(this.model);
 	}
 
 	public void updateModel(MMDModel model) {
@@ -306,7 +309,7 @@ public class MikuMikuGame extends ApplicationAdapter {
 		matrix.scale(scale, scale, scale);
 		
 		Gdx.gl.glFrontFace(GL20.GL_CW);
-		Gdx.gl.glEnable(GL20.GL_CULL_FACE);
+		Gdx.gl.glDisable(GL20.GL_CULL_FACE);
 		Gdx.gl.glEnable(GL20.GL_DEPTH_TEST);
 		
 		texture.bind();
