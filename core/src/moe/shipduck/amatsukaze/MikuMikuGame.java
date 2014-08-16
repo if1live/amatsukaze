@@ -10,6 +10,7 @@ import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.MMD_VECTOR3;
 import net.yzwlab.javammd.format.MMD_VERTEX_TEXUSE;
 import net.yzwlab.javammd.format.PMD_MATERIAL_RECORD;
+import net.yzwlab.javammd.io.GdxByteBuffer;
 import net.yzwlab.javammd.io.GdxFileBuffer;
 import net.yzwlab.javammd.model.MMDMaterial;
 import net.yzwlab.javammd.model.MMDModel;
@@ -206,8 +207,8 @@ public class MikuMikuGame extends ApplicationAdapter {
 		FileHandle vmdFileHandle = Gdx.files.internal(vmdFile);
 		
 		try {
-			model.openPMD(new GdxFileBuffer(pmdFileHandle));
-			model.openVMD(new GdxFileBuffer(vmdFileHandle));
+			model.openPMD(new GdxByteBuffer(pmdFileHandle));
+			model.openVMD(new GdxByteBuffer(vmdFileHandle));
 		} catch (ReadException e) {
 			e.printStackTrace();
 			System.exit(0);
