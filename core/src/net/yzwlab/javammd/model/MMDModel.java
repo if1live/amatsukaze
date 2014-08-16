@@ -24,6 +24,7 @@ import net.yzwlab.javammd.format.VMD_MOTION_RECORD;
 
 /**
  * MMDのモデルを表現します。
+ * MMD 모델을 표현합니다.
  */
 public class MMDModel implements IGLObject {
 
@@ -171,6 +172,7 @@ public class MMDModel implements IGLObject {
 		MMDMorp pMorp = null;
 
 		// モーションを追加するオフセット値
+		// 모션을 추가하는 오프셋 값
 		int offset = 0;
 		Integer maxFrameNum = getMaxFrame();
 		if (maxFrameNum != null) {
@@ -271,6 +273,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * モーション情報を消去します。
+	 * 모션 정보를 삭제합니다.
 	 */
 	public void clearMotion() {
 		for (int i = 0; i < m_bones.size(); i++) {
@@ -441,6 +444,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * IKが有効かどうかを判定します。
+	 * IK가 유효한지 여부를 판정합니다.
 	 * 
 	 * @param index
 	 *            インデックス。
@@ -455,6 +459,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * IKが有効かどうかを設定します。
+	 * IK를 사용할 수 있는지 여부를 설정합니다.
 	 * 
 	 * @param index
 	 *            インデックス。
@@ -470,6 +475,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * ボーンを表示するかどうかを設定します。
+	 * 뼈를 표시할지 여부를 설정합니다.
 	 * 
 	 * @param index
 	 *            インデックス。
@@ -497,6 +503,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * ボーンを表示するかどうかを判定します。
+	 * 뼈를 표시할지 여부를 판정합니다
 	 * 
 	 * @param index
 	 *            インデックス。
@@ -511,6 +518,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * 最大フレーム数を取得します。
+	 * 최대 프레임 수를 가져옵니다.
 	 * 
 	 * @return 最大フレーム数。
 	 */
@@ -547,6 +555,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * 頂点情報をリセットします。
+	 * 정점 정보를 재설정합니다.
 	 */
 	public void resetVertexes() {
 		assert m_pVertexList != null : "E_POINTER";
@@ -555,6 +564,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * スキニング情報を更新します。
+	 * 스키닝 정보를 업데이트합니다.
 	 */
 	public void updateSkinning() {
 		assert m_pVertexList != null : "E_POINTER";
@@ -566,6 +576,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * 頂点バッファを更新します。
+	 * 버텍스 버퍼를 업데이트합니다.
 	 */
 	public void updateVertexBuffer() {
 		for (int i = 0; i < m_materials.size(); i++) {
@@ -575,6 +586,7 @@ public class MMDModel implements IGLObject {
 
 	/**
 	 * モーションを更新します。
+	 * 모션을 업데이트합니다.
 	 * 
 	 * @param elapsedFrame
 	 *            経過フレーム数。

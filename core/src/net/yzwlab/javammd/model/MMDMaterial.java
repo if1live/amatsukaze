@@ -13,6 +13,7 @@ import net.yzwlab.javammd.format.PMD_VERTEX_RECORD;
 
 /**
  * MMDのマテリアルを管理するクラスです。
+ * MMD 자료를 관리하는 클래스입니다
  */
 public class MMDMaterial {
 	protected PMD_MATERIAL_RECORD m_material;
@@ -111,6 +112,7 @@ public class MMDMaterial {
 
 	/**
 	 * テクスチャの準備を行います。
+	 * 텍스처 준비합니다
 	 * 
 	 * @param pTextureProvider
 	 *            テクスチャを提供するインタフェース。nullは不可。
@@ -149,6 +151,7 @@ public class MMDMaterial {
 
 	/**
 	 * 頂点バッファを更新します。
+	 * 버텍스 버퍼를 업데이트합니다
 	 */
 	public void updateVertexBuffer() {
 		if (m_bVisible == false) {
@@ -164,6 +167,7 @@ public class MMDMaterial {
 
 	/**
 	 * マテリアルの内容を描画します。
+	 * 자료의 내용을 그립니다.
 	 * 
 	 * @param gl
 	 *            描画対象プラットフォーム。nullは不可。
@@ -269,6 +273,7 @@ public class MMDMaterial {
 
 	/**
 	 * テクスチャを設定します。
+	 * 텍스처를 설정합니다.
 	 * 
 	 * @param texture
 	 *            テクスチャ。nullは不可。

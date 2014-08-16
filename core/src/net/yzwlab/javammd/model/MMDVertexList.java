@@ -30,6 +30,7 @@ public class MMDVertexList {
 
 	/**
 	 * 検証します。
+	 * 검증합니다.
 	 */
 	public void verify() {
 		int index = 0;
@@ -75,6 +76,8 @@ public class MMDVertexList {
 	/**
 	 * スキニング行列を適用します。<br/>
 	 * 頂点分だけ処理を行うので、パフォーマンスに効いてくる部分。(と、思われる)
+	 * 스키닝 행렬을 적용합니다. <br/> 
+	 * 정점만큼 처리를 수행하기 때문에 성능에 효과가 나오는 부분. (라고 생각된다)
 	 */
 	public void updateSkinning() {
 		MMD_VERTEX_TEXUSE buffer = new MMD_VERTEX_TEXUSE();

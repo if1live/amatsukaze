@@ -156,6 +156,7 @@ public class MMDBone {
 
 	/**
 	 * モーションを追加します。
+	 * 모션을 추가합니다
 	 * 
 	 * @param buffer
 	 *            バッファ。nullは不可。
@@ -177,6 +178,7 @@ public class MMDBone {
 
 	/**
 	 * スキニング行列を更新します。
+	 * 스키닝 행렬을 업데이트합니다
 	 */
 	public void updateSkinning() {
 		m_effectSkinning.multiply(m_invTransform, m_effectLocal);
@@ -184,6 +186,7 @@ public class MMDBone {
 
 	/**
 	 * スキニング行列を適用します。
+	 * 스키닝 행렬을 적용합니다
 	 * 
 	 * @param pOriginal
 	 *            オリジナルの行列。nullは不可。
@@ -207,6 +210,7 @@ public class MMDBone {
 
 	/**
 	 * スキニング行列を適用します。
+	 * 스키닝 행렬을 적용합니다
 	 * 
 	 * @param pOriginal
 	 *            オリジナル行列。nullは不可。
@@ -276,6 +280,7 @@ public class MMDBone {
 
 	/**
 	 * 行列を更新します。
+	 * 행렬을 업데이트합니다
 	 */
 	public void updateMatrix() {
 		m_effectLocal.fromQuaternion(m_effectRotation);
@@ -298,6 +303,7 @@ public class MMDBone {
 
 	/**
 	 * 最大フレーム番号を取得します。
+	 * 최대 프레임 번호를 가져옵니다
 	 * 
 	 * @return 最大フレーム番号。未定義の場合はnull。
 	 */
@@ -327,6 +333,7 @@ public class MMDBone {
 
 	/**
 	 * local行列から位置を取得します。
+	 * local 행렬에서 위치를 가져옵니다
 	 * 
 	 * @param buffer
 	 *            バッファ。nullは不可。
@@ -343,6 +350,7 @@ public class MMDBone {
 
 	/**
 	 * local行列を取得します。
+	 * local 행렬을 가져옵니다.
 	 * 
 	 * @param buffer
 	 *            バッファ。nullは不可。
@@ -396,6 +404,7 @@ public class MMDBone {
 
 	/**
 	 * 親の名前を取得します。
+	 * 부모의 이름을 가져옵니다
 	 * 
 	 * @return 親の名前。
 	 */
@@ -408,6 +417,7 @@ public class MMDBone {
 
 	/**
 	 * モーションを定義します。
+	 * 모션을 정의합니다
 	 */
 	public class Motion {
 
@@ -495,6 +505,7 @@ public class MMDBone {
 
 		/**
 		 * このモーションのフレーム番号を取得します。
+		 * 이 모션의 프레임 번호를 가져옵니다
 		 * 
 		 * @return このモーションのフレーム番号。
 		 */
@@ -529,6 +540,7 @@ public class MMDBone {
 
 		/**
 		 * 線形補間を行います。
+		 * 선형 보간합니다
 		 * 
 		 * @param target
 		 *            格納対象のベクトル。nullは不可。

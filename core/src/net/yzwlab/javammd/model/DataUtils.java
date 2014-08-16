@@ -4,11 +4,13 @@ import java.util.Arrays;
 
 /**
  * データ関係のユーティリティクラスです。
+ * 데이터 관계 유틸리티 클래스입니다
  */
 public class DataUtils {
 
 	/**
 	 * バイトデータのオフセット部分を取得します。
+	 * 바이트 데이터의 오프셋 부분을 가져옵니다
 	 * 
 	 * @param data
 	 *            データ。nullは不可。
@@ -27,6 +29,7 @@ public class DataUtils {
 
 	/**
 	 * 文字列を取得します。
+	 * 문자열을 가져옵니다
 	 * 
 	 * @param data
 	 *            バイト列。nullは不可。
@@ -50,9 +53,10 @@ public class DataUtils {
 
 	/**
 	 * 文字列を取得します。
+	 * 문자열을 가져옵니다.
 	 * 
 	 * @param data
-	 *            バイト列。nullは不可。
+	 *            バイト列。nullは不可。바이트. null는 불가.
 	 * @param maxLen
 	 *            最大長。
 	 * @return 文字列。
@@ -75,6 +79,7 @@ public class DataUtils {
 
 	/**
 	 * 文字列を比較します。
+	 * 문자열을 비교합니다
 	 * 
 	 * @param data1
 	 *            バイト列。nullは不可。
@@ -93,6 +98,7 @@ public class DataUtils {
 
 	/**
 	 * 文字列を比較します。
+	 * 문자열을 비교합니다
 	 * 
 	 * @param data1
 	 *            バイト列。nullは不可。
