@@ -11,11 +11,11 @@ public class MMD_VERTEX_DESC implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final MMD_VERTEX_TEXUSE original;
+	public final MMD_VERTEX_TEXUSE original;
 
-	private final MMD_VERTEX_TEXUSE faced;
+	public final MMD_VERTEX_TEXUSE faced;
 
-	private final MMD_VERTEX_TEXUSE current;
+	public final MMD_VERTEX_TEXUSE current;
 
 	/**
 	 * ボーンの一覧を保持します。

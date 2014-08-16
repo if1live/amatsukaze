@@ -282,19 +282,4 @@ public class MMDMaterial {
 		assert texture != null;
 		m_texture = texture;
 	}
-
-	public class MMD_VERTEX_UNIT {
-		protected final MMD_VERTEX_DESC pOriginalVert;
-
-		//protected final MMD_VERTEX_TEXUSE pCurrentVert;
-		public final MMD_VERTEX_TEXUSE pCurrentVert;
-
-		public MMD_VERTEX_UNIT(MMD_VERTEX_DESC pOriginalVert,
-				MMD_VERTEX_TEXUSE pCurrentVert) {
-			this.pOriginalVert = pOriginalVert;
-			this.pCurrentVert = pCurrentVert;
-		}
-
-	}
-
 }

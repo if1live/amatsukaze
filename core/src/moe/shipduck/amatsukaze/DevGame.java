@@ -1,5 +1,9 @@
 package moe.shipduck.amatsukaze;
 
+import java.util.Iterator;
+
+import moe.shipduck.mmd.MikuMaterial;
+import moe.shipduck.mmd.MikuModel;
 import net.yzwlab.javammd.ReadException;
 import net.yzwlab.javammd.format.PMDFile;
 import net.yzwlab.javammd.format.PMD_MATERIAL_RECORD;
@@ -22,6 +26,8 @@ import com.badlogic.gdx.math.Matrix4;
 
 public class DevGame extends BaseGame {
 	Mesh mesh;
+	MikuModel model;
+	
 	String vertexShader = "attribute vec4 a_position;    \n" + 
             "uniform mat4 u_worldView;\n" + 
             "void main()                  \n" + 
@@ -42,6 +48,8 @@ public class DevGame extends BaseGame {
 	public void create() {
 		super.create();
 		
+		shader = new ShaderProgram(vertexShader, fragmentShader);
+		
 		FileHandle pmdFileHandle = Gdx.files.internal("test.pmd");
 		PMDFile pmdFile = new PMDFile();
 		try {
@@ -51,50 +59,8 @@ public class DevGame extends BaseGame {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
-		//mesh
-		int stride = 3;
-		float[] vertices = new float[pmdFile.GetVertexChunkSize() * stride];
-		int idx = 0;
-		for(int i = 0 ; i < pmdFile.GetVertexChunkSize() ; ++i) {
-			PMD_VERTEX_RECORD vert = pmdFile.GetVertexChunk().get(i); 
-			vertices[idx++] = vert.x;
-			vertices[idx++] = vert.y;
-			vertices[idx++] = vert.z;
-		}
-		
-		short[] indices = new short[pmdFile.GetIndexChunkSize()];
-		idx = 0;
-		for(int i = 0 ; i < pmdFile.GetIndexChunkSize() ; ++i) {
-			short val = pmdFile.GetIndexChunk().get(i);
-			indices[idx++] = val;
-		}
-		
-		mesh = new Mesh(true, vertices.length / stride, indices.length,
-			VertexAttribute.Position()
-		);
-		mesh.setVertices(vertices);
-		mesh.setIndices(indices);
-		
-		
-		shader = new ShaderProgram(vertexShader, fragmentShader);
-		
-		//TODO
-		for(int i = 0 ; i < pmdFile.GetMaterialChunkSize() ; ++i) {
-			PMD_MATERIAL_RECORD mtlData = pmdFile.GetMaterialChunk().get(i);
-			Material material = new Material();
-			material.set(ColorAttribute.createAmbient(mtlData.ambient.toColor()));
-			material.set(ColorAttribute.createDiffuse(mtlData.diffuse.toColor()));
-			material.set(ColorAttribute.createSpecular(mtlData.specular.toColor()));
-			material.set(FloatAttribute.createShininess(mtlData.shininess));
-			String texFileName = mtlData.getTextureFileName();
-			if(texFileName.length() > 0) {
-				Texture texture = new Texture(Gdx.files.internal(texFileName));
-				material.set(TextureAttribute.createDiffuse(texture));
-			}
-		}
-		
-		
+		model = new MikuModel();
+		model.setPMD(pmdFile);
 	}
 
 	
@@ -125,7 +91,14 @@ public class DevGame extends BaseGame {
 		
 		shader.begin();
 		shader.setUniformMatrix("u_worldView", matrix);
-		mesh.render(shader, GL20.GL_TRIANGLES);
+		
+		Iterator<MikuMaterial> materialIter = model.getMaterialIterator();
+		while(materialIter.hasNext()) {
+			MikuMaterial material = materialIter.next();
+			Mesh mesh = material.getMesh();
+			mesh.render(shader, GL20.GL_TRIANGLES);
+		}
+		
 		shader.end();
 	}
 }

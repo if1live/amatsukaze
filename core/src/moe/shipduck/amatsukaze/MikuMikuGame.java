@@ -1,6 +1,7 @@
 package moe.shipduck.amatsukaze;
 
 import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import net.yzwlab.javammd.io.GdxByteBuffer;
 import net.yzwlab.javammd.io.GdxFileBuffer;
 import net.yzwlab.javammd.model.MMDMaterial;
 import net.yzwlab.javammd.model.MMDModel;
-import net.yzwlab.javammd.model.MMDMaterial.MMD_VERTEX_UNIT;
+import net.yzwlab.javammd.model.MMD_VERTEX_UNIT;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
