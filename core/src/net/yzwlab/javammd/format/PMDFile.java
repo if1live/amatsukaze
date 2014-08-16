@@ -71,7 +71,7 @@ public class PMDFile implements Serializable {
 		int size = 0;
 		byte size_b = 0;
 		short size_w = 0;
-		m_header = (new PMD_HEADER()).read(fs);
+		m_header = PMD_Reader.read(fs, m_header);
 		size = fs.readInteger();
 		SetVertexChunkSize(size);
 		if (size != 0)
@@ -189,11 +189,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetVertexChunkSize(int size) {
-		{
-			m_vertexs.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_vertexs.add(new PMD_VERTEX_RECORD());
-			}
+		m_vertexs = new ArrayList<PMD_VERTEX_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_vertexs.add(new PMD_VERTEX_RECORD());
 		}
 	}
 
@@ -206,11 +204,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetIndexChunkSize(int size) {
-		{
-			m_indexs.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_indexs.add(new Short((short) 0));
-			}
+		m_indexs = new ArrayList<Short>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_indexs.add(new Short((short) 0));
 		}
 	}
 
@@ -223,11 +219,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetBoneChunkSize(int size) {
-		{
-			m_bones.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_bones.add(new PMD_BONE_RECORD());
-			}
+		m_bones = new ArrayList<PMD_BONE_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_bones.add(new PMD_BONE_RECORD());
 		}
 	}
 
@@ -240,11 +234,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetIKChunkSize(int size) {
-		{
-			m_ikbones.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_ikbones.add(new PMD_IK_RECORD());
-			}
+		m_ikbones = new ArrayList<PMD_IK_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_ikbones.add(new PMD_IK_RECORD());
 		}
 	}
 
@@ -257,11 +249,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetMaterialChunkSize(int size) {
-		{
-			m_materials.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_materials.add(new PMD_MATERIAL_RECORD());
-			}
+		m_materials = new ArrayList<PMD_MATERIAL_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_materials.add(new PMD_MATERIAL_RECORD());
 		}
 	}
 
@@ -274,11 +264,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetMorpChunkSize(int size) {
-		{
-			m_morps.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_morps.add(new PMD_MORP_RECORD());
-			}
+		m_morps = new ArrayList<PMD_MORP_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_morps.add(new PMD_MORP_RECORD());
 		}
 	}
 
@@ -291,11 +279,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetCtrlChunkSize(int size) {
-		{
-			m_ctrls.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_ctrls.add(new Short((short) 0));
-			}
+		m_ctrls = new ArrayList<Short>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_ctrls.add(new Short((short) 0));
 		}
 	}
 
@@ -308,11 +294,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetGrpNameChunkSize(int size) {
-		{
-			m_grp_name.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_grp_name.add(new PMD_GRP_NAME_RECORD());
-			}
+		m_grp_name = new ArrayList<PMD_GRP_NAME_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_grp_name.add(new PMD_GRP_NAME_RECORD());
 		}
 	}
 
@@ -325,11 +309,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetGrpChunkSize(int size) {
-		{
-			m_grp.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_grp.add(new PMD_GRP_RECORD());
-			}
+		m_grp = new ArrayList<PMD_GRP_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_grp.add(new PMD_GRP_RECORD());
 		}
 	}
 
@@ -342,11 +324,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetRigidBodyChunkSize(int size) {
-		{
-			m_rigidBodies.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_rigidBodies.add(new PMD_RIGID_BODY_RECORD());
-			}
+		m_rigidBodies = new ArrayList<PMD_RIGID_BODY_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_rigidBodies.add(new PMD_RIGID_BODY_RECORD());
 		}
 	}
 
@@ -359,11 +339,9 @@ public class PMDFile implements Serializable {
 	}
 
 	public void SetConstraintChunkSize(int size) {
-		{
-			m_constraints.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_constraints.add(new PMD_CONSTRAINT_RECORD());
-			}
+		m_constraints = new ArrayList<PMD_CONSTRAINT_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_constraints.add(new PMD_CONSTRAINT_RECORD());
 		}
 	}
 

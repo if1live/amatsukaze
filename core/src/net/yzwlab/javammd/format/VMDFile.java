@@ -165,11 +165,9 @@ public class VMDFile implements Serializable {
 	}
 
 	public void SetMotionChunkSize(int size) {
-		{
-			m_motion_chunk.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_motion_chunk.add(new VMD_MOTION_RECORD());
-			}
+		m_motion_chunk = new ArrayList<VMD_MOTION_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_motion_chunk.add(new VMD_MOTION_RECORD());
 		}
 	}
 
@@ -182,11 +180,9 @@ public class VMDFile implements Serializable {
 	}
 
 	public void SetMorpChunkSize(int size) {
-		{
-			m_morp_chunk.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_morp_chunk.add(new VMD_MORP_RECORD());
-			}
+		m_morp_chunk = new ArrayList<VMD_MORP_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_morp_chunk.add(new VMD_MORP_RECORD());
 		}
 	}
 
@@ -199,11 +195,9 @@ public class VMDFile implements Serializable {
 	}
 
 	public void SetCameraChunkSize(int size) {
-		{
-			m_camera_chunk.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_camera_chunk.add(new VMD_CAMERA_RECORD());
-			}
+		m_camera_chunk = new ArrayList<VMD_CAMERA_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_camera_chunk.add(new VMD_CAMERA_RECORD());
 		}
 	}
 
@@ -216,11 +210,9 @@ public class VMDFile implements Serializable {
 	}
 
 	public void SetLightChunkSize(int size) {
-		{
-			m_light_chunk.clear();
-			for (int ai = 0; ai < size; ai++) {
-				m_light_chunk.add(new VMD_LIGHT_RECORD());
-			}
+		m_light_chunk = new ArrayList<VMD_LIGHT_RECORD>(size);
+		for (int ai = 0; ai < size; ai++) {
+			m_light_chunk.add(new VMD_LIGHT_RECORD());
 		}
 	}
 

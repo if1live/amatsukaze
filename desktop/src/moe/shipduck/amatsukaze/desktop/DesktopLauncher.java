@@ -24,8 +24,8 @@ public class DesktopLauncher {
 		
 		//new LwjglApplication(new MyGdxGame(), config);
 		//new LwjglApplication(new Basic3D(), config);
-		//new LwjglApplication(new MikuMikuGame(), config);
+		new LwjglApplication(new MikuMikuGame(), config);
 		//new LwjglApplication(new DevGame(), config);
-		new LwjglApplication(new LightsTest(), config);
+		//new LwjglApplication(new LightsTest(), config);
 	}
 }
